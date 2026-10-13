@@ -21,7 +21,7 @@ export function renderHome() {
     
     <section class="section" id="homeworks" aria-labelledby="hw-title">
       <div class="section-heading">
-        <div><div class="eyebrow small">YOUR LABORATORIES</div><h2 id="hw-title">Homework collection</h2><p>Ogni homework avrà un'area indipendente, con teoria, codice e visualizzazioni.</p></div>
+        <div><div class="eyebrow small">YOUR LABORATORIES</div><h2 id="hw-title">Homework collection</h2></div>
         <span class="section-counter">01 — 02</span>
       </div>
       <div class="homework-grid">
@@ -29,7 +29,7 @@ export function renderHome() {
           <div class="card-top"><span class="card-code">HMW / 01</span><span class="card-arrow" aria-hidden="true">↗</span></div>
           <div class="card-illustration ecc-illustration" aria-hidden="true"><span>G</span><span>2G</span><span>3G</span><span>Q</span></div>
           <h3>Elliptic Curve<br />Cryptography</h3>
-          <p>Dal numero segreto alla chiave pubblica: aritmetica modulare, punti sulla curva e analisi statistica.</p>          
+          <p>From secret number to public key: modular arithmetic, points on the curve, and statistical analysis.</p>          
           <div class="card-bottom">
             <span class="tag">SECP256K1 · TOY CURVE</span>
 
@@ -43,7 +43,7 @@ export function renderHome() {
           <div class="card-top"><span class="card-code">HMW / 02</span><span class="card-arrow" aria-hidden="true">↗</span></div>
           <div class="card-illustration wallet-illustration" aria-hidden="true"><span>SEED</span><i>→</i><span>KEY</span><i>→</i><span>0x…</span></div>
           <h3>Ethereum Wallet<br />Pipeline</h3>
-          <p>Dal mnemonic all'indirizzo Ethereum: BIP-39, BIP-32, BIP-44, hashing Keccak ed EIP-55.</p>          
+          <p>From mnemonic to Ethereum's address: BIP-39, BIP-32, BIP-44, hashing Keccak ed EIP-55.</p>          
           <div class="card-bottom">
             <span class="tag">BIP · ETHEREUM</span>
 
@@ -56,11 +56,11 @@ export function renderHome() {
     </section>
 
     <section class="section approach-section" aria-labelledby="approach-title">
-      <div class="section-heading"><div><div class="eyebrow small">HOW IT WORKS</div><h2 id="approach-title">One place, many homweworks.</h2><p>Each Homeworks unit is structured to allow for:</p></div></div>
+      <div class="section-heading"><div><div class="eyebrow small">HOW IT WORKS</div><h2 id="approach-title">This site contains all the homweworks.</h2><p>Each Homeworks unit is structured like this:</p></div></div>
       <div class="approach-grid">
         <div class="approach-item"><span class="approach-num">01 /</span><h3>Backgrounds</h3><p>Understand mathematical concepts, definitions, and formulas.</p></div>
-        <div class="approach-item"><span class="approach-num">02 /</span><h3>Experiment</h3><p>Interact with algorithms, examples, and simulations..</p></div>
-        <div class="approach-item"><span class="approach-num">03 /</span><h3>Analysis</h3><p>Examine results, distributions, and statistical properties.</p></div>
+        <div class="approach-item"><span class="approach-num">02 /</span><h3>Dynamic experiment</h3><p>Interact with algorithms, examples, and simulations..</p></div>
+        <div class="approach-item"><span class="approach-num">03 /</span><h3>Analysis & Conclusion</h3><p>Examine results, distributions, and statistical properties.</p></div>
       </div>
     </section>`;
 }
