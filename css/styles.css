@@ -1068,3 +1068,166 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 @media (max-width: 400px) {
   .hmw2-path-grid { grid-template-columns: 1fr; }
 }
+
+/* ======================================================
+   HMW 2 — Interactive Wallet Pipeline (Step 2)
+   ====================================================== */
+
+/* Security warning */
+
+.hmw2-demo-warning {
+  border-left: 3px solid #e3ac64;
+  background: #30261e;
+  color: #f4dfb5;
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* Simulator controls */
+
+.hmw2-demo-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(130px, 1fr) auto;
+  align-items: end;
+  gap: 14px;
+  margin: 24px 0 12px;
+}
+
+.hmw2-demo-controls label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.hmw2-demo-controls select,
+.hmw2-demo-controls button {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #426172;
+  font: inherit;
+  font-size: 12px;
+}
+
+.hmw2-demo-controls select {
+  background: #0b1a27;
+  color: var(--text);
+}
+
+.hmw2-demo-controls button {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #07232a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hmw2-demo-controls button:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.hmw2-demo-controls button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* Simulator status */
+
+.hmw2-demo-status {
+  min-height: 22px;
+  color: #b0dcd1;
+  font-size: 12px;
+}
+
+/* Pipeline results */
+
+.hmw2-demo-results {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.hmw2-demo-results[hidden] {
+  display: none;
+}
+
+/* Individual cryptographic stages */
+
+.hmw2-demo-stage {
+  padding: 20px;
+  background: #0b1a27;
+  border: 1px solid #29454e;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.hmw2-demo-stage h3 {
+  font-size: 16px;
+  margin: 0 0 10px;
+  color: #d3f5ed;
+}
+
+.hmw2-demo-stage p {
+  margin: 0 0 14px;
+  font-size: 12px;
+}
+
+/* Field labels */
+
+.hmw2-demo-field {
+  display: block;
+  margin: 14px 0 6px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* Cryptographic values */
+
+.hmw2-demo-data {
+  padding: 12px;
+  background: #142b38;
+  border: 1px solid #31515e;
+  border-radius: 6px;
+  color: #c3fae9;
+  font: 12px/1.8 Consolas, monospace;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  user-select: all;
+}
+
+/* Collapsible private-key information */
+
+.hmw2-demo-stage details {
+  margin-top: 10px;
+}
+
+.hmw2-demo-stage summary {
+  padding: 8px 0;
+  cursor: pointer;
+  color: #aee7da;
+  font-size: 12px;
+}
+
+.hmw2-demo-stage summary:hover {
+  color: #d4fff3;
+}
+
+/* Final checksummed address */
+
+.hmw2-demo-final {
+  background: #10312f;
+  border-color: #356a62;
+}
+
+/* Responsive layout */
+
+@media (max-width: 800px) {
+  .hmw2-demo-controls {
+    grid-template-columns: 1fr;
+  }
+}

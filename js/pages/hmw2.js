@@ -1,3 +1,4 @@
+import { renderHmw2WalletLab } from '../homeworks/hmw2/wallet-ui.js';
 
 /*
  * HMW 2 — Step 1: Introduction & Theory
@@ -546,22 +547,20 @@ export function renderHmw2() {
       </ul>
     </section>
 
+    ${renderHmw2WalletLab()}
+
     <!-- ===================================================
          NEXT STEP
          =================================================== -->
 
     <section class="next-step">
       <span class="next-icon" aria-hidden="true">↗</span>
-
       <div>
-        <strong>
-          Next step: Interactive Wallet Pipeline
-        </strong>
-
+        <strong>Next step: Statistical Exploration</strong>
         <p>
-          We will use documented test vectors and a maintained JavaScript
-          library to demonstrate the derivation process. Later steps will
-          cover statistical experiments, historical context, and conclusions.
+          We will investigate hash output distributions, bit frequencies,
+          Hamming distances, avalanche behaviour and changes in derived
+          Ethereum addresses.
         </p>
       </div>
     </section>
