@@ -4,10 +4,10 @@ export function renderHome() {
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL WORKSPACE</div>
-        <h1 id="hero-heading">Learn the math.<br /><span>Explore the cryptography.</span></h1>
-        <p>Digital lab: collection of all statistics homework assignments.</p>
+        <h1 id="hero-heading">Learn and Explore.<br /><span>Statistics and cryptography concepts.</span></h1>
+        <p>Digital lab: collection of all statistics homework assignments done by Francesco Petrone.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#/hmw1">EXplore HMW 01 <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="#/hmw1">Explore HMW 01 <span aria-hidden="true">↗</span></a>
           <a class="button button-ghost" href="#homeworks">See all homeworks <span aria-hidden="true">↓</span></a>
         </div>
       </div>
