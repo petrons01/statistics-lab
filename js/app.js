@@ -2,6 +2,7 @@ import { renderHome } from './pages/home.js';
 import { renderHmw1 } from './pages/hmw1.js';
 import { renderHmw2 } from './pages/hmw2.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
+import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -31,7 +32,9 @@ function setMenuOpen(open) {
   menuTrigger.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
   document.body.classList.toggle('menu-open', open);
 }
+
 let disposeHomework = () => {};
+
 function navigate() {
  // Ferma eventuali animazioni della pagina precedente.
   disposeHomework();
@@ -41,10 +44,21 @@ function navigate() {
 
   content.innerHTML = page.render();
 
-  // Inizializza le funzionalità specifiche dell'homework.
-  disposeHomework = path === '/hmw1'
-    ? initHmw1Simulator()
-    : () => {};
+  if (path === '/hmw1') {
+    // Initialize both HMW 1 interactive modules.
+    const cleanupSimulator = initHmw1Simulator();
+    const cleanupStatistics = initHmw1Statistics();
+
+    // Stop/clean modules when changing page.
+    disposeHomework = () => {
+      cleanupSimulator();
+      cleanupStatistics();
+    };
+
+  } else {
+    disposeHomework = () => {};
+  }
+
   breadcrumb.textContent = page.label;
   document.title = `${page.title} — CryptoLab`;
 
