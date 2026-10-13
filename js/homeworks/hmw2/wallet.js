@@ -21,7 +21,7 @@ export const DEMO_MNEMONICS = Object.freeze([
 
 let ethersPromise;
 
-function loadEthers() {
+export function loadEthers() {
   // Imported lazily so Dashboard and HMW 1 work even if CDN is unavailable.
   ethersPromise ??= import(ETHERS_MODULE).catch(error => {
     ethersPromise = undefined;

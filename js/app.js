@@ -4,6 +4,7 @@ import { renderHmw2 } from './pages/hmw2.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
 import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 import { initHmw2Wallet } from './homeworks/hmw2/wallet-ui.js';
+import { initHmw2Statistics } from './homeworks/hmw2/statistics-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -56,13 +57,22 @@ function navigate() {
     disposeHomework = () => {
       cleanupSimulator();
       cleanupStatistics();
-    };
+    };  
   } else if (path === '/hmw2') {
 
-    // Initialize the Ethereum Wallet Pipeline simulator.
-    disposeHomework = initHmw2Wallet();
-  } else {
+    // Initialize Ethereum wallet simulation.
+    const cleanupWallet = initHmw2Wallet();
 
+    // Initialize statistical exploration.
+    const cleanupStatistics = initHmw2Statistics();
+
+    // Cleanup when switching to another page.
+    disposeHomework = () => {
+      cleanupWallet();
+      cleanupStatistics();
+    };
+  } else {
+    
     // Pages without interactive modules.
     disposeHomework = () => {};
   }

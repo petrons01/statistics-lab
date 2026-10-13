@@ -1,4 +1,5 @@
 import { renderHmw2WalletLab } from '../homeworks/hmw2/wallet-ui.js';
+import { renderHmw2StatisticsLab } from '../homeworks/hmw2/statistics-ui.js';
 
 /*
  * HMW 2 — Step 1: Introduction & Theory
@@ -16,7 +17,7 @@ export function renderHmw2() {
         <span class="eyebrow-line"></span>
         HOMEWORK 02 · ETHEREUM WALLET CRYPTOGRAPHY
       </div>
-      <span class="module-status">STEP 1 · THEORY</span>
+      <span class="module-status">ETHEREUM · INTERACTIVE LAB</span>
     </section>
 
     <section class="module-intro">
@@ -549,20 +550,29 @@ export function renderHmw2() {
 
     ${renderHmw2WalletLab()}
 
+    ${renderHmw2StatisticsLab()}
+
     <!-- ===================================================
          NEXT STEP
-         =================================================== -->
+     =================================================== -->
 
+    
     <section class="next-step">
       <span class="next-icon" aria-hidden="true">↗</span>
+
       <div>
-        <strong>Next step: Statistical Exploration</strong>
+        <strong>
+          Next step: Historical Context & Final Discussion
+        </strong>
+
         <p>
-          We will investigate hash output distributions, bit frequencies,
-          Hamming distances, avalanche behaviour and changes in derived
-          Ethereum addresses.
+          We will compare the historical development of RSA,
+          SHA-2, BIP-32, BIP-39, BIP-44, SHA-3 and EIP-55,
+          then discuss the purpose of each cryptographic
+          primitive and present our final conclusions.
         </p>
       </div>
     </section>
+
   `;
 }

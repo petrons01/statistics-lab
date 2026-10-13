@@ -1231,3 +1231,208 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
     grid-template-columns: 1fr;
   }
 }
+
+/* =====================================================
+   HMW 2 — Statistical Exploration (Step 3)
+   ===================================================== */
+
+.hmw2-stat-settings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  gap: 12px;
+  align-items: end;
+  margin: 22px 0;
+}
+
+.hmw2-stat-settings label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 0;
+}
+
+.hmw2-stat-settings select,
+.hmw2-stat-settings button {
+  width: 100%;
+  min-height: 43px;
+  border-radius: 8px;
+  border: 1px solid #426172;
+  padding: 10px;
+  font: inherit;
+  font-size: 12px;
+}
+
+.hmw2-stat-settings select {
+  background: #0b1a27;
+  color: var(--text);
+}
+
+.hmw2-stat-settings button {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #07232a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hmw2-stat-settings button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.hmw2-stat-status {
+  font-size: 12px;
+  color: #b0dcd1;
+  min-height: 20px;
+}
+
+#hmw2-stat-results[hidden] {
+  display: none;
+}
+
+/* Statistical sections */
+
+.hmw2-stat-block {
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+}
+
+.hmw2-stat-block h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.hmw2-stat-block h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #d0efe6;
+}
+
+/* Statistical charts */
+
+.hmw2-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.hmw2-stat-card {
+  min-width: 0;
+  background: #0b1a27;
+  border: 1px solid #29454e;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.hmw2-stat-card p {
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+
+.hmw2-stat-big {
+  font-size: clamp(16px, 2vw, 23px);
+  color: #aef0da;
+  overflow-wrap: anywhere;
+}
+
+/* Horizontal bar charts */
+
+.hmw2-stat-meters {
+  display: grid;
+  gap: 8px;
+}
+
+.hmw2-stat-meter {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 60px;
+  gap: 10px;
+  align-items: center;
+  font-size: 11px;
+}
+
+.hmw2-stat-meter > span,
+.hmw2-stat-meter > strong {
+  color: #b3d2d6;
+  font-family: Consolas, monospace;
+}
+
+.hmw2-stat-meter > strong {
+  text-align: right;
+}
+
+.hmw2-stat-track {
+  height: 10px;
+  background: #213746;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hmw2-stat-track > div {
+  height: 100%;
+  background: #5bd1bc;
+  border-radius: inherit;
+}
+
+/* Notes and summaries */
+
+.hmw2-stat-note,
+.hmw2-stat-summary {
+  font-size: 12px;
+  color: #b9d5da;
+  background: #102d35;
+  border-left: 3px solid var(--accent);
+  padding: 12px 15px;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+
+/* Derived address table */
+
+.hmw2-stat-tablewrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 18px 0;
+}
+
+.hmw2-stat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.hmw2-stat-table th,
+.hmw2-stat-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+}
+
+.hmw2-stat-table th {
+  color: var(--accent);
+}
+
+.hmw2-stat-hex {
+  font-family: Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1100px) {
+  .hmw2-stat-settings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+  .hmw2-stat-settings,
+  .hmw2-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hmw2-stat-card {
+    padding: 14px;
+  }
+}
