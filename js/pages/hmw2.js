@@ -1,5 +1,6 @@
 import { renderHmw2WalletLab } from '../homeworks/hmw2/wallet-ui.js';
 import { renderHmw2StatisticsLab } from '../homeworks/hmw2/statistics-ui.js';
+import { renderHmw2Conclusion } from '../homeworks/hmw2/conclusion.js';
 
 /*
  * HMW 2 — Step 1: Introduction & Theory
@@ -82,7 +83,7 @@ export function renderHmw2() {
         </p>
 
         <p class="panel-note">
-          The future simulator will use publicly documented test vectors.
+          The interactive simulator uses publicly documented test vectors.
           No real wallet credentials are needed.
         </p>
       </aside>
@@ -552,27 +553,6 @@ export function renderHmw2() {
 
     ${renderHmw2StatisticsLab()}
 
-    <!-- ===================================================
-         NEXT STEP
-     =================================================== -->
-
-    
-    <section class="next-step">
-      <span class="next-icon" aria-hidden="true">↗</span>
-
-      <div>
-        <strong>
-          Next step: Historical Context & Final Discussion
-        </strong>
-
-        <p>
-          We will compare the historical development of RSA,
-          SHA-2, BIP-32, BIP-39, BIP-44, SHA-3 and EIP-55,
-          then discuss the purpose of each cryptographic
-          primitive and present our final conclusions.
-        </p>
-      </div>
-    </section>
-
+    ${renderHmw2Conclusion()}
   `;
 }

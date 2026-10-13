@@ -43,12 +43,13 @@ export function renderHome() {
           <div class="card-top"><span class="card-code">HMW / 02</span><span class="card-arrow" aria-hidden="true">↗</span></div>
           <div class="card-illustration wallet-illustration" aria-hidden="true"><span>SEED</span><i>→</i><span>KEY</span><i>→</i><span>0x…</span></div>
           <h3>Ethereum Wallet<br />Pipeline</h3>
-          <p>From mnemonic to Ethereum's address: BIP-39, BIP-32, BIP-44, hashing Keccak ed EIP-55.</p>          
+          <p>From mnemonic phrases to Ethereum addresses: BIP-39, BIP-32, BIP-44, Keccak-256 and EIP-55.</p>          
           <div class="card-bottom">
             <span class="tag">BIP · ETHEREUM</span>
 
-            <span class="homework-status homework-status--planned">
-              Planned
+            <span class="homework-status homework-status--done">
+              <span aria-hidden="true">✓</span>
+              Done
             </span>
           </div>
         </a>
