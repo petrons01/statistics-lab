@@ -11,7 +11,7 @@ The project combines mathematical explanations, JavaScript implementations, inte
 | Homework | Topic | Status |
 |---|---|---|
 | HMW 01 | Elliptic Curve Cryptography — Private to Public Key | ✅ Completed |
-| HMW 02 | Ethereum Wallet — Key Derivation and Hashing | Planned |
+| HMW 02 | Ethereum Wallet — Key Derivation and Hashing | ✅ Completed |
 
 ### HMW 01 — Elliptic Curve Cryptography
 
