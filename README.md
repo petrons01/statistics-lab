@@ -5,7 +5,7 @@ Website collecting the statistics course assignments.
 ## Structure
 
 ```text
-cryptography-lab/
+statistics-lab/
 ├── index.html              # Entry 
 ├── css/
 │   └── styles.css          # Style and responsive layout
