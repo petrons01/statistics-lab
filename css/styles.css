@@ -326,3 +326,259 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
     grid-template-columns: 1fr;
   }
 }
+
+/* ======================================================
+   HMW 1 - Interactive ECC Simulator
+   ====================================================== */
+
+.hmw1-sim-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.hmw1-sim-controls,
+.hmw1-sim-plot {
+  min-width: 0;
+  background: #0b1a27;
+  border: 1px solid #2b4653;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.hmw1-sim-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hmw1-sim-keyrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hmw1-sim-keyrow input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.hmw1-sim-keyrow input[type="number"] {
+  width: 72px;
+  padding: 10px;
+  background: #122b37;
+  border: 1px solid #426172;
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  text-align: center;
+}
+
+.hmw1-sim-help {
+  font-size: 11px !important;
+  margin: 10px 0 20px !important;
+}
+
+.hmw1-sim-results {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.hmw1-sim-results > div {
+  background: #112936;
+  border: 1px solid #2c4b56;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.hmw1-sim-results span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.hmw1-sim-results strong {
+  font-size: 17px;
+  color: #c3fae9;
+  overflow-wrap: anywhere;
+}
+
+/* Pulsanti */
+.hmw1-sim-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.hmw1-sim-actions button {
+  border: 1px solid #3b706c;
+  border-radius: 8px;
+  background: #16383f;
+  color: #e1fff6;
+  padding: 10px 13px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hmw1-sim-actions button:hover:not(:disabled) {
+  background: #215259;
+}
+
+.hmw1-sim-actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hmw1-sim-actions button:first-child {
+  background: var(--accent);
+  color: #07232a;
+}
+
+/* Progressione */
+.hmw1-sim-progress label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.hmw1-sim-progress progress {
+  width: 100%;
+  height: 10px;
+  accent-color: var(--accent);
+}
+
+.panel .hmw1-sim-operation {
+  color: #c2ebdf;
+  margin: 14px 0 0;
+  min-height: 42px;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Grafico SVG */
+.hmw1-graph-svg {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.hmw1-graph-svg text {
+  font: 12px Consolas, monospace;
+  fill: #8fa8b5;
+}
+
+.hmw1-grid-line {
+  stroke: #385263;
+  stroke-width: 0.6;
+  opacity: 0.52;
+}
+
+.hmw1-axis {
+  stroke: #91aebb;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.hmw1-curve-point {
+  fill: #567b8b;
+  stroke: #b8d9de;
+  stroke-width: 0.8;
+}
+
+.hmw1-target-point {
+  fill: none;
+  stroke: #b8dddb;
+  stroke-width: 2;
+  stroke-dasharray: 3 2;
+}
+
+.hmw1-base-point {
+  fill: #f8c879;
+  stroke: #0b1a27;
+  stroke-width: 1.5;
+}
+
+.hmw1-current-point {
+  fill: #67e2c5;
+  stroke: #eafff8;
+  stroke-width: 2;
+}
+
+/* Legenda */
+.hmw1-sim-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.hmw1-sim-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hmw1-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.hmw1-dot-point {
+  background: #567b8b;
+}
+
+.hmw1-dot-base {
+  background: #f8c879;
+}
+
+.hmw1-dot-active {
+  background: #67e2c5;
+}
+
+.panel .hmw1-sim-plot p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 14px 0 0;
+}
+
+/* Cronologia operazioni */
+.hmw1-sim-history {
+  margin-top: 24px;
+}
+
+.hmw1-sim-history h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .hmw1-sim-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .hmw1-sim-controls,
+  .hmw1-sim-plot {
+    padding: 14px;
+  }
+
+  .hmw1-sim-actions button {
+    flex: 1;
+  }
+}

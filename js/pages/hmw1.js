@@ -131,7 +131,150 @@ export function renderHmw1() {
         small toy curve. Real Ethereum uses secp256k1, with vastly larger parameters.
       </p>
     </section>
+    
+    <section id="hmw1-simulator" class="panel hmw1-section"
+            aria-labelledby="hmw1-sim-title">
 
+      <div class="panel-label">04 / INTERACTIVE SIMULATOR</div>
+      <h2 id="hmw1-sim-title">Explore scalar multiplication</h2>
+
+      <p>
+        Select a scalar and add the base point G step by step.
+        This simulation uses a toy curve, not a real Ethereum private key.
+      </p>
+
+      <div class="hmw1-sim-layout">
+
+        <!-- Controls -->
+        <div class="hmw1-sim-controls">
+
+          <label class="hmw1-sim-label" for="hmw1-key">
+            Scalar k
+          </label>
+
+          <div class="hmw1-sim-keyrow">
+            <input
+              id="hmw1-key-range"
+              type="range"
+              min="1"
+              max="18"
+              value="6"
+              aria-label="Scalar k slider"
+            />
+
+            <input
+              id="hmw1-key"
+              type="number"
+              min="1"
+              max="18"
+              step="1"
+              value="6"
+              inputmode="numeric"
+            />
+          </div>
+
+          <p class="hmw1-sim-help">
+            Values 1–8 are valid nonzero keys for this subgroup.
+            Values 9–18 illustrate the repeating cycle.
+          </p>
+
+          <div class="hmw1-sim-results">
+            <div>
+              <span>BASE POINT</span>
+              <strong>G = (1, 5)</strong>
+            </div>
+
+            <div>
+              <span>FINAL TOY PUBLIC KEY (kG)</span>
+              <strong id="hmw1-target">(5, 8)</strong>
+            </div>
+
+            <div>
+              <span>CURRENT STEP</span>
+              <strong id="hmw1-current">𝒪</strong>
+            </div>
+          </div>
+
+          <div class="hmw1-sim-actions">
+            <button type="button" id="hmw1-next">
+              Next step →
+            </button>
+
+            <button type="button" id="hmw1-play">
+              ▶ Play
+            </button>
+
+            <button type="button" id="hmw1-reset">
+              Reset
+            </button>
+          </div>
+
+          <div class="hmw1-sim-progress">
+            <label for="hmw1-progress" id="hmw1-progress-label">
+              Step 0 of 6
+            </label>
+
+            <progress id="hmw1-progress" value="0" max="6">
+            </progress>
+          </div>
+
+          <p id="hmw1-operation" class="hmw1-sim-operation"
+            aria-live="polite">
+            Start at the identity point 𝒪.
+          </p>
+        </div>
+
+        <!-- Curve graph -->
+        <div class="hmw1-sim-plot">
+          <div id="hmw1-graph"></div>
+
+          <div class="hmw1-sim-legend">
+            <span>
+              <i class="hmw1-dot hmw1-dot-point"></i>
+              Curve points
+            </span>
+
+            <span>
+              <i class="hmw1-dot hmw1-dot-base"></i>
+              Base point G
+            </span>
+
+            <span>
+              <i class="hmw1-dot hmw1-dot-active"></i>
+              Current
+            </span>
+          </div>
+
+          <p>
+            Points are discrete elements of F₁₇.
+            Lines connecting them would not represent
+            elliptic-curve addition.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Operations history -->
+      <div class="hmw1-sim-history">
+        <h3>Completed operations</h3>
+
+        <div class="hmw1-table-wrap">
+          <table class="hmw1-table">
+            <thead>
+              <tr>
+                <th scope="col">Step</th>
+                <th scope="col">Addition</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+
+            <tbody id="hmw1-steps"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+    
     <section class="next-step">
       <span class="next-icon" aria-hidden="true">↗</span>
       <div>
