@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08131f" />
+    <meta name="description" content="CryptoLab: una raccolta modulare di homework interattivi di crittografia." />
+    <title>CryptoLab — Homework di crittografia</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Vai al contenuto</a>
+    <div class="app-shell">
+      <div class="mobile-overlay" id="mobile-overlay" hidden></div>
+      <aside class="sidebar" id="sidebar" aria-label="Navigazione principale">
+        <div class="brand">
+          <span class="brand-symbol" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="23" height="23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2 28 9v14l-12 7L4 23V9L16 2Z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4.5 9.5 11.5 7 11.5-7M16 16.5V29" stroke="currentColor" stroke-width="1.3" opacity=".75"/>
+              <circle cx="16" cy="16.5" r="2.6" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand-copy"><strong>CryptoLab</strong><small>LEARNING WORKSPACE</small></span>
+        </div>
+
+        <div class="sidebar-content">
+          <div class="nav-label">WORKSPACE</div>
+          <nav class="primary-nav" aria-label="Sezioni del sito">
+            <a class="nav-link" href="#/" data-route="/">
+              <span class="nav-icon" aria-hidden="true">▦</span>
+              <span>Dashboard</span>
+            </a>
+            <button class="nav-group-toggle" id="homework-toggle" type="button" aria-expanded="true" aria-controls="homework-items">
+              <span class="nav-group-label"><span class="nav-icon" aria-hidden="true">⌘</span>Homeworks</span>
+              <span class="chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="nav-subitems" id="homework-items">
+              <a class="nav-link nav-homework" href="#/hmw1" data-route="/hmw1">
+                <span class="nav-number">01</span><span class="nav-link-text">Elliptic Curves<small>Private → Public Key</small></span>
+              </a>
+              <a class="nav-link nav-homework" href="#/hmw2" data-route="/hmw2">
+                <span class="nav-number">02</span><span class="nav-link-text">Ethereum Wallet<small>Keys &amp; Addresses</small></span>
+              </a>
+              <a class="nav-link nav-homework" href="#/hmw3" data-route="/hmw3">
+                <span class="nav-number">03</span><span class="nav-link-text">Future Homework<small>Coming soon</small></span>
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <span class="status-indicator" aria-hidden="true"></span>
+          <span>Site architecture ready</span>
+          <span class="footer-version">v0.1</span>
+        </div>
+      </aside>
+
+      <div class="main-shell">
+        <header class="topbar">
+          <button class="menu-trigger" id="menu-trigger" aria-label="Apri menu" aria-controls="sidebar" aria-expanded="false" type="button">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="breadcrumb"><span>CRYPTOGRAPHY</span><span class="breadcrumb-separator">/</span><strong id="breadcrumb-current">Overview</strong></div>
+          <span class="topbar-pill"><span class="topbar-live-dot" aria-hidden="true"></span>Student workspace</span>
+        </header>
+        <main class="page-content" id="content" tabindex="-1">
+          <div class="loading-fallback">Caricamento sito…</div>
+        </main>
+        <footer class="site-footer">
+          <span>CryptoLab · Homework collection</span>
+          <span>Built with HTML, CSS &amp; JavaScript</span>
+        </footer>
+      </div>
+    </div>
+    <noscript>Questo sito richiede JavaScript attivo per la navigazione tra gli homework.</noscript>
+  </body>
+</html>

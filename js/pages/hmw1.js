@@ -1,0 +1,10 @@
+export function renderHmw1() {
+  return `
+    <section class="module-header"><div class="eyebrow"><span class="eyebrow-line"></span> HOMEWORK 01 · ECC</div><span class="module-status">LAB IN PREPARATION</span></section>
+    <section class="module-intro"><h1>From Private Key<br /><span>to Public Key.</span></h1><p>Un laboratorio sull'operazione di moltiplicazione scalare delle curve ellittiche. Qui costruiremo la simulazione richiesta dal primo homework.</p></section>
+    <div class="module-layout">
+      <section class="panel panel-large"><div class="panel-label">MATHEMATICAL MODEL</div><h2>The toy elliptic curve</h2><p>Il punto di partenza è una curva su un campo finito. La chiave privata è uno scalare, la chiave pubblica è un punto sulla curva.</p><div class="math-display">y² ≡ x³ + 7 <span>(mod 17)</span></div><div class="parameter-grid"><div><span>BASE POINT</span><strong>G = (1, 5)</strong></div><div><span>PRIVATE KEY</span><strong>k = 6</strong></div><div><span>PUBLIC KEY</span><strong>Q = (5, 8)</strong></div></div><p class="panel-note">I valori indicati sono un esempio verificato, non ancora una simulazione interattiva. Implementeremo il calcolo e la visualizzazione nella prossima fase.</p></section>
+      <section class="panel panel-side"><div class="panel-label">ROADMAP</div><h2>What we'll build</h2><ol class="roadmap"><li><span>01</span><div><strong>Point addition</strong><small>Somma di punti e inverso modulare</small></div></li><li><span>02</span><div><strong>Scalar multiplication</strong><small>Calcolo di G, 2G, …, kG</small></div></li><li><span>03</span><div><strong>Interactive visualization</strong><small>Step-by-step e coordinate</small></div></li><li><span>04</span><div><strong>Statistical exploration</strong><small>Frequenze, bit, correlazioni</small></div></li></ol></section>
+    </div>
+    <section class="next-step"><span class="next-icon">↗</span><div><strong>Modulo predisposto</strong><p>La pagina è già collegata al menu. In seguito aggiungeremo qui l'applicazione vera e propria senza cambiare l'indirizzo URL.</p></div></section>`;
+}
