@@ -81,5 +81,3 @@ All cryptographic implementations are intended for educational purposes only and
 ---
 
 **Author:** Francesco Petrone
-
-**Course:** Statistics — MSc in Cybersecurity
