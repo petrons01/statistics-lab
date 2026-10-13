@@ -21,7 +21,7 @@ export function renderHome() {
 
     <section class="overview-strip" aria-label="Stato del progetto">
       <div class="overview-stat"><strong>01</strong><span>Un solo sito</span></div>
-      <div class="overview-stat"><strong>03</strong><span>Sezioni predisposte</span></div>
+      <div class="overview-stat"><strong>02</strong><span>Sezioni disponibili</span></div>
       <div class="overview-stat"><strong>∞</strong><span>Espandibile nel tempo</span></div>
       <div class="overview-status"><span class="status-indicator"></span> Struttura iniziale pronta</div>
     </section>
@@ -29,7 +29,7 @@ export function renderHome() {
     <section class="section" id="homeworks" aria-labelledby="hw-title">
       <div class="section-heading">
         <div><div class="eyebrow small">YOUR LABORATORIES</div><h2 id="hw-title">Homework collection</h2><p>Ogni homework avrà un'area indipendente, con teoria, codice e visualizzazioni.</p></div>
-        <span class="section-counter">01 — 03</span>
+        <span class="section-counter">01 — 02</span>
       </div>
       <div class="homework-grid">
         <a class="homework-card" href="#/hmw1">
@@ -45,13 +45,6 @@ export function renderHome() {
           <h3>Ethereum Wallet<br />Pipeline</h3>
           <p>Dal mnemonic all'indirizzo Ethereum: BIP-39, BIP-32, BIP-44, hashing Keccak ed EIP-55.</p>
           <div class="card-bottom"><span class="tag">BIP · ETHEREUM</span><span class="label-muted">Da sviluppare</span></div>
-        </a>
-        <a class="homework-card coming-soon" href="#/hmw3">
-          <div class="card-top"><span class="card-code">HMW / 03</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-          <div class="card-illustration future-illustration" aria-hidden="true"><span>+</span></div>
-          <h3>Next<br />Homework</h3>
-          <p>Uno spazio pronto per il prossimo esercizio: lo aggiungeremo senza ricostruire il sito.</p>
-          <div class="card-bottom"><span class="tag">FUTURE MODULE</span><span class="label-muted">Coming soon</span></div>
         </a>
       </div>
     </section>

@@ -1,14 +1,13 @@
 import { renderHome } from './pages/home.js';
 import { renderHmw1 } from './pages/hmw1.js';
 import { renderHmw2 } from './pages/hmw2.js';
-import { renderHmw3 } from './pages/hmw3.js';
 
-// Per aggiungere HMW 4 in futuro, crea il modulo e registra una nuova rotta.
+// Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
+// Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
 const routes = {
   '/': { label: 'Overview', title: 'Dashboard', render: renderHome },
   '/hmw1': { label: 'HMW 01', title: 'Elliptic Curve Cryptography', render: renderHmw1 },
   '/hmw2': { label: 'HMW 02', title: 'Ethereum Wallet Pipeline', render: renderHmw2 },
-  '/hmw3': { label: 'HMW 03', title: 'Future Homework', render: renderHmw3 },
 };
 
 const content = document.getElementById('content');
