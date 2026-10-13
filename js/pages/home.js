@@ -3,12 +3,12 @@ export function renderHome() {
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-inner">
-        <div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL CRYPTOGRAPHY WORKSPACE</div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL WORKSPACE</div>
         <h1 id="hero-heading">Learn the math.<br /><span>Explore the cryptography.</span></h1>
-        <p>Un laboratorio digitale per studiare algoritmi, sperimentare con esempi interattivi e raccogliere tutti gli homework di crittografia in un unico posto.</p>
+        <p>Digital lab: collection of all statistics homework assignments.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#/hmw1">Esplora HMW 01 <span aria-hidden="true">↗</span></a>
-          <a class="button button-ghost" href="#homeworks">Vedi tutti gli homework <span aria-hidden="true">↓</span></a>
+          <a class="button button-primary" href="#/hmw1">EXplore HMW 01 <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="#homeworks">See all homeworks <span aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -18,14 +18,7 @@ export function renderHome() {
         <span class="orbit-coordinate coord-a">(1, 5)</span><span class="orbit-coordinate coord-b">(5, 8)</span>
       </div>
     </section>
-
-    <section class="overview-strip" aria-label="Stato del progetto">
-      <div class="overview-stat"><strong>01</strong><span>Un solo sito</span></div>
-      <div class="overview-stat"><strong>02</strong><span>Sezioni disponibili</span></div>
-      <div class="overview-stat"><strong>∞</strong><span>Espandibile nel tempo</span></div>
-      <div class="overview-status"><span class="status-indicator"></span> Struttura iniziale pronta</div>
-    </section>
-
+    
     <section class="section" id="homeworks" aria-labelledby="hw-title">
       <div class="section-heading">
         <div><div class="eyebrow small">YOUR LABORATORIES</div><h2 id="hw-title">Homework collection</h2><p>Ogni homework avrà un'area indipendente, con teoria, codice e visualizzazioni.</p></div>
