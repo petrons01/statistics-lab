@@ -1,4 +1,4 @@
-# CryptoLab
+# Statistics Lab
 
 Un unico sito per raccogliere e pubblicare gli homework di crittografia.
 
