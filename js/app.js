@@ -29,7 +29,10 @@ function setMenuOpen(open) {
   sidebar.classList.toggle('is-open', open);
   overlay.hidden = !open;
   menuTrigger.setAttribute('aria-expanded', String(open));
-  menuTrigger.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+  menuTrigger.setAttribute(
+    'aria-label',
+    open ? 'Close menu' : 'Open menu'
+  );
   document.body.classList.toggle('menu-open', open);
 }
 

@@ -892,3 +892,48 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
     padding: 16px;
   }
 }
+
+/* =========================================
+   Homepage - Section spacing
+   ========================================= */
+
+#homeworks {
+  margin-top: 60px;
+}
+
+/* Responsive spacing */
+@media (max-width: 760px) {
+  #homeworks {
+    margin-top: 36px;
+  }
+}
+
+/* =========================================
+   Homework completion statuses
+   ========================================= */
+
+.homework-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Completed homework */
+.homework-status--done {
+  color: #67e2c5;
+  background: rgba(103, 226, 197, 0.10);
+  border: 1px solid rgba(103, 226, 197, 0.35);
+}
+
+/* Homework not yet implemented */
+.homework-status--planned {
+  color: #a5b6c3;
+  background: rgba(165, 182, 195, 0.07);
+  border: 1px solid #385260;
+}
