@@ -60,7 +60,7 @@ function navigate() {
   }
 
   breadcrumb.textContent = page.label;
-  document.title = `${page.title} — CryptoLab`;
+  document.title = `${page.title} — Statistics-Lab`;
 
   document.querySelectorAll('[data-route]').forEach(link => {
     const selected = link.dataset.route === path;
