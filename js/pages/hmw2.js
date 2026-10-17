@@ -16,7 +16,7 @@ export function renderHmw2() {
     <section class="module-header">
       <div class="eyebrow">
         <span class="eyebrow-line"></span>
-        HOMEWORK 02 · ETHEREUM WALLET CRYPTOGRAPHY
+        HOMEWORK 1.2 · ETHEREUM WALLET CRYPTOGRAPHY
       </div>
       <span class="module-status">ETHEREUM · INTERACTIVE LAB</span>
     </section>

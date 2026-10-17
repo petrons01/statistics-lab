@@ -6,14 +6,18 @@ The project combines mathematical explanations, JavaScript implementations, inte
 
 **Live Website:** [Statistics Lab](https://petrons01.github.io/statistics-lab/)
 
+
 ## Homeworks
 
-| Homework | Topic | Status |
-|---|---|---|
-| HMW 01 | Elliptic Curve Cryptography — Private to Public Key | ✅ Completed |
-| HMW 02 | Ethereum Wallet — Key Derivation and Hashing | ✅ Completed |
+### Homework 1
 
-### HMW 01 — Elliptic Curve Cryptography
+| Exercise | Topic | Status |
+|---|---|---|
+| Homework 1.1 | Elliptic Curve Cryptography — Private to Public Key | ✅ Completed |
+| Homework 1.2 | Ethereum Wallet — Key Derivation and Hashing | ✅ Completed |
+
+
+#### Homework 1.1 — Elliptic Curve Cryptography
 
 An interactive implementation of elliptic-curve scalar multiplication using the toy curve \(y^2 = x^3 + 7 \pmod{17}\).
 
@@ -26,7 +30,7 @@ Features:
 - Cryptographic discussion and conclusions.
 
 
-### HMW 02 — Ethereum Wallet Pipeline
+#### Homework 1.2 — Ethereum Wallet Pipeline
 
 An interactive exploration of Ethereum wallet generation, key derivation, cryptographic hashing, and statistical properties.
 
@@ -61,8 +65,8 @@ statistics-lab/
 │   │
 │   ├── pages/
 │   │   ├── home.js             # Homepage and homework dashboard
-│   │   ├── hmw1.js             # HMW 01 page
-│   │   └── hmw2.js             # HMW 02 page
+│   │   ├── hmw1.js             # HMW 1.1 page
+│   │   └── hmw2.js             # HMW 1.2 page
 │   │
 │   └── homeworks/
 │       │
@@ -95,6 +99,20 @@ vanilla JavaScript and ES Modules.
 
 Each homework is implemented independently, allowing new assignments
 to be added without modifying existing cryptographic modules.
+
+
+### Homework Organization
+
+Homework 1 contains two independent exercises:
+
+- **Homework 1.1:** Elliptic Curve Cryptography, implemented in `js/homeworks/hmw1/`.
+- **Homework 1.2:** Ethereum Wallet Pipeline, implemented in `js/homeworks/hmw2/`.
+
+Each exercise has its own page and JavaScript modules.
+
+The logical homework numbering is independent of the physical
+directory names and application routes. This allows the project
+to grow with additional homework groups and exercises.
 
 
 ## Technologies

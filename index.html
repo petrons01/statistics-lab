@@ -38,16 +38,55 @@
               <span class="chevron" aria-hidden="true">⌄</span>
             </button>
             <div class="nav-subitems" id="homework-items">
-              <a class="nav-link nav-homework" href="#/hmw1" data-route="/hmw1">
-                <span class="nav-number">01</span><span class="nav-link-text">Elliptic Curves<small>Private → Public Key</small></span>
-              </a>
-              <a class="nav-link nav-homework" href="#/hmw2" data-route="/hmw2">
-                <span class="nav-number">02</span><span class="nav-link-text">Ethereum Wallet<small>Keys &amp; Addresses</small></span>
-              </a>
+
+              <details class="nav-homework-details">
+
+                <!-- Expandable Homework 1 header -->
+                <summary class="nav-homework-summary">
+
+                  <span class="nav-number">01</span>
+
+                  <span>Homework 1</span>
+
+                  <span class="chevron" aria-hidden="true">⌄</span>
+
+                </summary>
+
+                <!-- Nested homework links -->
+                <div class="nav-homework-children">
+
+                  <!-- Homework 1.1 -->
+                  <a
+                    class="nav-link nav-homework nav-homework-child"
+                    href="#/hmw1"
+                    data-route="/hmw1"
+                  >
+                    <span class="nav-number">1.1</span>
+
+                    <span class="nav-link-text">
+                      Elliptic Curves
+                      <small>Private → Public Key</small>
+                    </span>
+                  </a>
+
+                  <!-- Homework 1.2 -->
+                  <a
+                    class="nav-link nav-homework nav-homework-child"
+                    href="#/hmw2"
+                    data-route="/hmw2"
+                  >
+                    <span class="nav-number">1.2</span>
+
+                    <span class="nav-link-text">
+                      Ethereum Wallet
+                      <small>Keys &amp; Addresses</small>
+                    </span>
+                  </a>
+                </div>
+              </details>
             </div>
           </nav>
         </div>
-
         <div class="sidebar-footer">
           <span class="status-indicator" aria-hidden="true"></span>
           <span>Site architecture ready</span>

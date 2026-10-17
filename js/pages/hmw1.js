@@ -7,7 +7,7 @@ export function renderHmw1() {
   return `
     <section class="module-header">
       <div class="eyebrow">
-        <span class="eyebrow-line"></span> HOMEWORK 01 · ELLIPTIC CURVE CRYPTOGRAPHY
+        <span class="eyebrow-line"></span> HOMEWORK 1.1 · ELLIPTIC CURVE CRYPTOGRAPHY
       </div>
       <span class="module-status">ECC · INTERACTIVE LAB</span>
     </section>

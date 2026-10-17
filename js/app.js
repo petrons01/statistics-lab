@@ -9,9 +9,23 @@ import { initHmw2Statistics } from './homeworks/hmw2/statistics-ui.js';
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
 const routes = {
-  '/': { label: 'Overview', title: 'Dashboard', render: renderHome },
-  '/hmw1': { label: 'HMW 01', title: 'Elliptic Curve Cryptography', render: renderHmw1 },
-  '/hmw2': { label: 'HMW 02', title: 'Ethereum Wallet Pipeline', render: renderHmw2 },
+  '/': {
+    label: 'Overview',
+    title: 'Dashboard',
+    render: renderHome
+  },
+
+  '/hmw1': {
+    label: 'Homework 1.1',
+    title: 'Homework 1.1 — Elliptic Curve Cryptography',
+    render: renderHmw1
+  },
+
+  '/hmw2': {
+    label: 'Homework 1.2',
+    title: 'Homework 1.2 — Ethereum Wallet Pipeline',
+    render: renderHmw2
+  }
 };
 
 const content = document.getElementById('content');
