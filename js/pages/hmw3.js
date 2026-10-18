@@ -25,7 +25,7 @@ export function renderHmw3() {
       </div>
 
       <span class="module-status">
-        CRYPTOGRAPHY · IN DEVELOPMENT
+        CRYPTOGRAPHY · INTERACTIVE LAB
       </span>
 
     </section>
@@ -596,34 +596,6 @@ export function renderHmw3() {
          ========================================== -->
 
     ${renderHmw3Simulator()}
-
-
-    <!-- ==========================================
-         NEXT STEP
-         ========================================== -->
-
-    <section class="next-step">
-
-      <span class="next-icon" aria-hidden="true">
-        ↗
-      </span>
-
-      <div>
-
-        <strong>
-          Next step: Caesar Encryption &amp; Decryption
-        </strong>
-
-        <p>
-          We will implement the Caesar cipher and build
-          the first interactive simulator, allowing users
-          to encrypt and decrypt messages with a
-          configurable shift key.
-        </p>
-
-      </div>
-
-    </section>
 
   `;
 }
