@@ -2249,3 +2249,969 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
   }
 
 }
+
+/* =====================================================
+   HOMEWORK 2 — STATISTICAL CRYPTANALYSIS
+   ===================================================== */
+
+.hmw3-attack-lab {
+  margin-top: 28px;
+  min-width: 0;
+}
+
+/* Section headings */
+
+.hmw3-attack-lab .hmw3-caesar-block h3 {
+  margin: 0 0 12px;
+
+  color: #d7f5ee;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+.hmw3-attack-actions {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+  margin: 26px 0 18px;
+}
+
+.hmw3-attack-actions .hmw3-caesar-button {
+  width: 100%;
+}
+
+.hmw3-attack-actions .hmw3-caesar-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =====================================================
+   REFERENCE CORPUS INFORMATION
+   ===================================================== */
+
+#hmw3-attack-corpus {
+  margin-top: 8px;
+  padding: 12px 16px;
+
+  background: #102b35;
+  border: 1px solid #31515e;
+  border-radius: 8px;
+
+  color: #b5dcd9;
+  line-height: 1.7;
+}
+
+/* =====================================================
+   ANALYSIS RESULTS
+   ===================================================== */
+
+#hmw3-attack-results {
+  margin-top: 30px;
+}
+
+#hmw3-attack-results[hidden] {
+  display: none;
+}
+
+/* =====================================================
+   STATISTICAL METRICS
+   ===================================================== */
+
+.hmw3-attack-metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 14px;
+}
+
+.hmw3-attack-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-width: 0;
+  min-height: 100px;
+
+  padding: 18px;
+
+  background: #102532;
+  border: 1px solid #355464;
+  border-radius: 10px;
+}
+
+.hmw3-attack-metric span {
+  margin-bottom: 14px;
+
+  color: #9ebbc4;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.hmw3-attack-metric strong {
+  color: #e0f2ed;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 25px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+/* Highlight the recovered key */
+
+.hmw3-attack-metric:first-child {
+  background: #10332e;
+  border-color: #347663;
+}
+
+.hmw3-attack-metric:first-child strong {
+  color: #94efd0;
+}
+
+/* =====================================================
+   RECOVERED PLAINTEXT
+   ===================================================== */
+
+#hmw3-attack-plaintext {
+  background: #10332e;
+  border-color: #347663;
+
+  color: #b5f1dd;
+
+  line-height: 1.8;
+}
+
+/* =====================================================
+   CANDIDATE RANKING TABLE
+   ===================================================== */
+
+.hmw3-attack-table-wrap {
+  width: 100%;
+  margin-top: 18px;
+
+  border: 1px solid #31515e;
+  border-radius: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.hmw3-attack-table {
+  width: 100%;
+  min-width: 660px;
+
+  border-collapse: collapse;
+  background: #0c1e2b;
+
+  color: #c3dce1;
+  font-size: 12px;
+}
+
+/* Table header */
+
+.hmw3-attack-table thead {
+  background: #193745;
+}
+
+.hmw3-attack-table th {
+  padding: 14px 16px;
+
+  color: #b5dce1;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Table body */
+
+.hmw3-attack-table td {
+  padding: 13px 16px;
+
+  border-top: 1px solid #25424e;
+
+  vertical-align: top;
+  line-height: 1.65;
+}
+
+.hmw3-attack-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.hmw3-attack-table tbody tr:hover {
+  background: #17313d;
+}
+
+/* Numeric columns */
+
+.hmw3-attack-table th:nth-child(1),
+.hmw3-attack-table td:nth-child(1) {
+  width: 65px;
+}
+
+.hmw3-attack-table th:nth-child(2),
+.hmw3-attack-table td:nth-child(2) {
+  width: 65px;
+}
+
+.hmw3-attack-table th:nth-child(3),
+.hmw3-attack-table td:nth-child(3) {
+  width: 105px;
+}
+
+.hmw3-attack-table td:nth-child(2),
+.hmw3-attack-table td:nth-child(3) {
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 600;
+}
+
+/* Plaintext candidate preview */
+
+.hmw3-attack-table td:last-child {
+  min-width: 220px;
+  max-width: 420px;
+
+  color: #9fb8c2;
+  overflow-wrap: anywhere;
+}
+
+/* Best candidate */
+
+.hmw3-attack-table tbody tr.is-best {
+  background: #133c36;
+}
+
+.hmw3-attack-table tbody tr.is-best:hover {
+  background: #19483f;
+}
+
+.hmw3-attack-table tbody tr.is-best td {
+  color: #b6f4dc;
+  font-weight: 600;
+}
+
+.hmw3-attack-table tbody tr.is-best td:nth-child(2) {
+  color: #7de3bc;
+}
+
+/* =====================================================
+   FREQUENCY CHART LEGEND
+   ===================================================== */
+
+.hmw3-attack-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 20px;
+  margin: 20px 0;
+
+  color: #acc7ce;
+  font-size: 12px;
+}
+
+.hmw3-attack-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hmw3-attack-swatch {
+  display: inline-block;
+
+  width: 13px;
+  height: 13px;
+
+  border-radius: 3px;
+}
+
+.hmw3-attack-swatch.is-reference {
+  background: #58cbb9;
+}
+
+.hmw3-attack-swatch.is-observed {
+  background: #e2bd78;
+}
+
+/* =====================================================
+   LETTER FREQUENCY COMPARISON
+   ===================================================== */
+
+.hmw3-attack-frequency-list {
+  display: grid;
+  gap: 8px;
+
+  padding: 20px 18px;
+
+  background: #0b1a27;
+  border: 1px solid #31515e;
+  border-radius: 10px;
+}
+
+/* One row for each letter */
+
+.hmw3-attack-frequency-row {
+  display: grid;
+
+  grid-template-columns:
+    22px minmax(0, 1fr) 100px;
+
+  align-items: center;
+  gap: 14px;
+
+  min-width: 0;
+  padding: 5px 0;
+}
+
+.hmw3-attack-letter {
+  color: #cce7e5;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Container for the two bars */
+
+.hmw3-attack-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 5px;
+  min-width: 0;
+}
+
+/* Individual bars */
+
+.hmw3-attack-bar {
+  height: 8px;
+  max-width: 100%;
+
+  border-radius: 3px;
+
+  transition: width 0.25s ease;
+}
+
+/* Reference corpus frequency */
+
+.hmw3-attack-bar.is-reference {
+  background: #58cbb9;
+}
+
+/* Recovered plaintext frequency */
+
+.hmw3-attack-bar.is-observed {
+  background: #e2bd78;
+}
+
+/* Numeric percentages */
+
+.hmw3-attack-percentages {
+  color: #9eb7c2;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 10px;
+
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =====================================================
+   STATUS MESSAGES
+   ===================================================== */
+
+#hmw3-attack-status {
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+
+#hmw3-attack-status[data-state="success"] {
+  background: #10332e;
+  border-color: #347663;
+
+  color: #a4efd5;
+}
+
+#hmw3-attack-status[data-state="error"] {
+  background: #352322;
+  border-color: #9b534b;
+
+  color: #ffbdb4;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 950px) {
+
+  .hmw3-attack-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .hmw3-attack-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .hmw3-attack-metrics {
+    gap: 10px;
+  }
+
+  .hmw3-attack-metric {
+    min-height: 85px;
+    padding: 14px;
+  }
+
+  .hmw3-attack-metric strong {
+    font-size: 21px;
+  }
+
+  .hmw3-attack-frequency-list {
+    padding: 14px 10px;
+  }
+
+  .hmw3-attack-frequency-row {
+    grid-template-columns:
+      16px minmax(0, 1fr) 76px;
+
+    gap: 8px;
+  }
+
+  .hmw3-attack-percentages {
+    font-size: 9px;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .hmw3-attack-metrics {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hmw3-attack-bar,
+  .hmw3-attack-table tbody tr {
+    transition: none;
+  }
+
+}
+
+/* =====================================================
+   HOMEWORK 2 — CAESAR LENGTH EXPERIMENTS
+   ===================================================== */
+
+/* Main laboratory */
+
+.hmw3-experiment-lab {
+  margin-top: 28px;
+  min-width: 0;
+}
+
+.hmw3-experiment-lab .hmw3-caesar-block h3 {
+  margin: 0 0 12px;
+
+  color: #d7f5ee;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+
+/* =====================================================
+   REFERENCE AND EVALUATION CORPORA
+   ===================================================== */
+
+.hmw3-experiment-corpora {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  margin-top: 28px;
+}
+
+.hmw3-experiment-corpus {
+  min-width: 0;
+  padding: 18px;
+
+  background: #102532;
+  border: 1px solid #355464;
+  border-radius: 10px;
+}
+
+.hmw3-experiment-corpus .hmw3-caesar-label {
+  margin-bottom: 10px;
+}
+
+.hmw3-experiment-corpus p {
+  margin: 0;
+
+  color: #b8ddd9;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.8;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   EXPERIMENT CONFIGURATION
+   ===================================================== */
+
+.hmw3-experiment-settings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+.hmw3-experiment-settings > div {
+  min-width: 0;
+}
+
+.hmw3-experiment-settings .hmw3-ecc-key-input {
+  width: 100%;
+  max-width: 320px;
+}
+
+.hmw3-experiment-settings .hmw3-caesar-label {
+  margin-bottom: 10px;
+}
+
+
+/* =====================================================
+   RUN EXPERIMENTS BUTTON
+   ===================================================== */
+
+.hmw3-experiment-actions {
+  margin: 28px 0 18px;
+}
+
+.hmw3-experiment-actions .hmw3-caesar-button {
+  width: 100%;
+  min-height: 48px;
+}
+
+.hmw3-experiment-actions
+.hmw3-caesar-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =====================================================
+   EXPERIMENT STATUS
+   ===================================================== */
+
+#hmw3-experiment-status {
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+#hmw3-experiment-status[data-state="success"] {
+  background: #10332e;
+  border-color: #347663;
+  color: #a4efd5;
+}
+
+#hmw3-experiment-status[data-state="error"] {
+  background: #352322;
+  border-color: #9b534b;
+  color: #ffbdb4;
+}
+
+
+/* =====================================================
+   EXPERIMENT RESULTS
+   ===================================================== */
+
+#hmw3-experiment-results {
+  margin-top: 30px;
+}
+
+#hmw3-experiment-results[hidden],
+#hmw3-experiment-failures-wrap[hidden] {
+  display: none;
+}
+
+
+/* =====================================================
+   EXPERIMENT METRICS
+   ===================================================== */
+
+.hmw3-experiment-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+
+  margin-bottom: 30px;
+}
+
+/*
+ * Metric cards reuse .hmw3-attack-metric
+ * from the statistical cryptanalysis section.
+ */
+
+.hmw3-experiment-metrics .hmw3-attack-metric {
+  min-height: 100px;
+}
+
+.hmw3-experiment-metrics
+.hmw3-attack-metric:first-child {
+  background: #102532;
+  border-color: #355464;
+}
+
+.hmw3-experiment-metrics
+.hmw3-attack-metric:first-child strong {
+  color: #e0f2ed;
+}
+
+/* Highlight longest-text accuracy */
+
+.hmw3-experiment-metrics
+.hmw3-attack-metric:last-child {
+  background: #10332e;
+  border-color: #347663;
+}
+
+.hmw3-experiment-metrics
+.hmw3-attack-metric:last-child strong {
+  color: #94efd0;
+}
+
+
+/* =====================================================
+   KEY RECOVERY ACCURACY CHART
+   ===================================================== */
+
+.hmw3-experiment-chart {
+  display: grid;
+  gap: 18px;
+
+  margin-top: 22px;
+  padding: 24px 20px;
+
+  background: #0b1a27;
+  border: 1px solid #31515e;
+  border-radius: 10px;
+}
+
+
+/*
+ * One row per ciphertext length.
+ *
+ * Layout:
+ * length | bar track | accuracy %
+ */
+
+.hmw3-experiment-chart-row {
+  display: grid;
+
+  grid-template-columns:
+    64px minmax(0, 1fr) 68px;
+
+  align-items: center;
+  gap: 16px;
+
+  min-width: 0;
+}
+
+
+/* Ciphertext length */
+
+.hmw3-experiment-chart-label {
+  color: #cce7e5;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* Background track */
+
+.hmw3-experiment-track {
+  position: relative;
+
+  width: 100%;
+  height: 22px;
+
+  background: #193443;
+  border: 1px solid #31515e;
+  border-radius: 6px;
+
+  overflow: hidden;
+}
+
+
+/* Filled accuracy bar */
+
+.hmw3-experiment-bar-fill {
+  height: 100%;
+  min-width: 0;
+
+  background: linear-gradient(
+    90deg,
+    #287c78,
+    #5bd1bc
+  );
+
+  border-radius: 5px;
+
+  transition: width 0.35s ease;
+}
+
+
+/* Accuracy percentage */
+
+.hmw3-experiment-chart-value {
+  color: #a9e9d8;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 650;
+
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =====================================================
+   EXPERIMENT SUMMARY TABLE
+   ===================================================== */
+
+.hmw3-experiment-table-wrap {
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 18px;
+
+  border: 1px solid #31515e;
+  border-radius: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/*
+ * Reuse the table styles of Section 07.
+ * A wider minimum width accommodates
+ * the additional experimental metrics.
+ */
+
+.hmw3-experiment-table-wrap
+.hmw3-attack-table {
+  min-width: 820px;
+}
+
+.hmw3-experiment-table-wrap
+.hmw3-attack-table th {
+  white-space: nowrap;
+}
+
+.hmw3-experiment-table-wrap
+.hmw3-attack-table td {
+  white-space: nowrap;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Highlight recovered accuracy values */
+
+#hmw3-experiment-table td:nth-child(4) {
+  color: #a4efd5;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   EXPERIMENT INTERPRETATION
+   ===================================================== */
+
+.hmw3-experiment-interpretation {
+  margin-top: 16px;
+  padding: 20px;
+
+  background: #102532;
+  border: 1px solid #355464;
+  border-left: 3px solid #5bd1bc;
+  border-radius: 9px;
+
+  color: #bfd9da;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+
+/* =====================================================
+   FAILED KEY RECOVERY EXAMPLES
+   ===================================================== */
+
+#hmw3-experiment-failures-note {
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+#hmw3-experiment-failures-wrap {
+  margin-top: 16px;
+}
+
+#hmw3-experiment-failures-wrap
+.hmw3-attack-table {
+  min-width: 580px;
+}
+
+/*
+ * Emphasize the mismatch between the
+ * real and recovered keys.
+ */
+
+#hmw3-experiment-failures td:nth-child(2) {
+  color: #a6dfef;
+}
+
+#hmw3-experiment-failures td:nth-child(3) {
+  color: #efc18a;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+  .hmw3-experiment-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .hmw3-experiment-metrics
+  .hmw3-attack-metric:last-child {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .hmw3-experiment-corpora {
+    grid-template-columns: 1fr;
+  }
+
+  .hmw3-experiment-settings {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hmw3-experiment-settings
+  .hmw3-ecc-key-input {
+    max-width: none;
+  }
+
+  .hmw3-experiment-chart {
+    gap: 16px;
+    padding: 18px 12px;
+  }
+
+  .hmw3-experiment-chart-row {
+    grid-template-columns:
+      43px minmax(0, 1fr) 57px;
+
+    gap: 10px;
+  }
+
+  .hmw3-experiment-chart-label,
+  .hmw3-experiment-chart-value {
+    font-size: 11px;
+  }
+
+  .hmw3-experiment-track {
+    height: 18px;
+  }
+
+  .hmw3-experiment-interpretation {
+    padding: 15px;
+    font-size: 12px;
+  }
+
+}
+
+
+@media (max-width: 420px) {
+
+  .hmw3-experiment-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .hmw3-experiment-metrics
+  .hmw3-attack-metric:last-child {
+    grid-column: auto;
+  }
+
+  .hmw3-experiment-metrics
+  .hmw3-attack-metric {
+    min-height: 84px;
+  }
+
+  .hmw3-experiment-chart-row {
+    grid-template-columns:
+      38px minmax(0, 1fr) 49px;
+
+    gap: 7px;
+  }
+
+  .hmw3-experiment-chart-label,
+  .hmw3-experiment-chart-value {
+    font-size: 10px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hmw3-experiment-bar-fill {
+    transition: none;
+  }
+
+}

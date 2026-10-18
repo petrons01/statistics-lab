@@ -11,6 +11,8 @@
  */
 
 
+
+
 import {
   caesarEncrypt,
   caesarDecrypt
@@ -22,6 +24,17 @@ import {
   encryptEccMessage,
   decryptEccMessage
 } from './ecc-encryption.js';
+
+
+import {
+  renderHmw3Statistics,
+  initHmw3Statistics
+} from './statistics-ui.js';
+
+import {
+  renderHmw3Experiments,
+  initHmw3Experiments
+} from './experiments-ui.js';
 
 
 
@@ -350,6 +363,19 @@ export function renderHmw3Simulator() {
 
     ${renderHmw3EccLab()}
 
+      <!-- ==========================================
+         07 / STATISTICAL CRYPTANALYSIS
+         ========================================== -->
+
+    ${renderHmw3Statistics()}
+
+    <!-- ==========================================
+         08 / CIPHERTEXT LENGTH EXPERIMENTS
+         ========================================== -->
+
+    ${renderHmw3Experiments()}
+
+
   `;
 }
 
@@ -667,7 +693,7 @@ export function initHmw3Simulator() {
    */
   updateAlphabet();
 
-  // Show the initial example ciphertext.
+
   // Show the initial example Caesar ciphertext.
   encryptMessage();
 
@@ -677,13 +703,22 @@ export function initHmw3Simulator() {
     resetButton
   );
 
+  // Initialize Caesar statistical cryptanalysis.
+  const cleanupStatistics = initHmw3Statistics();
+
+  // Initialize ciphertext length experiments.
+  const cleanupExperiments = initHmw3Experiments();
+
   /*
    * Cleanup when leaving Homework 2.
    */
   return () => {
     controller.abort();
     cleanupEcc();
+    cleanupStatistics();
+    cleanupExperiments();
   };
+
 
 }
 
