@@ -27,7 +27,7 @@ export function renderHome() {
           <h2 id="hw-title">Homework collection</h2>
         </div>
 
-        <span class="section-counter">01 UNIT · 02 EXERCISES</span>
+        <span class="section-counter">02 UNITS · 03 EXERCISES</span>
       </div>
 
       <!-- HOMEWORK 1 -->
@@ -112,7 +112,89 @@ export function renderHome() {
           </a>
         </div>
       </section>
+
+      <!-- ==========================================
+          HOMEWORK 2
+          ========================================== -->
+
+      <section class="homework-unit" aria-labelledby="homework-2-title">
+
+        <div class="section-heading">
+
+          <h3 id="homework-2-title">
+            Homework 2
+          </h3>
+
+          <span class="section-counter">
+            0/1 COMPLETED
+          </span>
+
+        </div>
+
+
+        <div class="homework-grid">
+
+          <!-- Homework 2: Encryption & Cryptanalysis -->
+          <a class="homework-card" href="#/hmw3">
+
+            <div class="card-top">
+
+              <span class="card-code">
+                HMW / 02
+              </span>
+
+              <span class="card-arrow" aria-hidden="true">
+                ↗
+              </span>
+
+            </div>
+
+
+            <!-- Cryptography illustration -->
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+
+              <span>ECC</span>
+              <i>→</i>
+              <span>CAESAR</span>
+              <i>→</i>
+              <span>ATTACK</span>
+
+            </div>
+
+
+            <h3>
+              Encryption, Decryption<br />
+              &amp; Cryptanalysis
+            </h3>
+
+            <p>
+              Compare Caesar and elliptic-curve-based encryption,
+              explore statistical cryptanalysis, and recover weak
+              cryptographic keys through experimental attacks.
+            </p>
+
+
+            <div class="card-bottom">
+
+              <span class="tag">
+                ECC · CAESAR · CRYPTANALYSIS
+              </span>
+
+              <span class="homework-status homework-status--planned">
+                Planned
+              </span>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
     </section>
+
 
     <section class="section approach-section" aria-labelledby="approach-title">
       <div class="section-heading"><div><div class="eyebrow small">HOW IT WORKS</div><h2 id="approach-title">This site contains all the homweworks.</h2><p>Each Homeworks unit is structured like this:</p></div></div>

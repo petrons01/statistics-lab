@@ -1,10 +1,12 @@
 import { renderHome } from './pages/home.js';
 import { renderHmw1 } from './pages/hmw1.js';
 import { renderHmw2 } from './pages/hmw2.js';
+import { renderHmw3 } from './pages/hmw3.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
 import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 import { initHmw2Wallet } from './homeworks/hmw2/wallet-ui.js';
 import { initHmw2Statistics } from './homeworks/hmw2/statistics-ui.js';
+import { initHmw3Simulator } from './homeworks/hmw3/simulator-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -25,6 +27,12 @@ const routes = {
     label: 'Homework 1.2',
     title: 'Homework 1.2 — Ethereum Wallet Pipeline',
     render: renderHmw2
+  },
+  
+  '/hmw3': {
+    label: 'Homework 2',
+    title: 'Homework 2 — Encryption & Cryptanalysis',
+    render: renderHmw3
   }
 };
 
@@ -80,14 +88,19 @@ function navigate() {
     // Initialize statistical exploration.
     const cleanupStatistics = initHmw2Statistics();
 
-    // Cleanup when switching to another page.
     disposeHomework = () => {
       cleanupWallet();
       cleanupStatistics();
     };
+
+  } else if (path === '/hmw3') {
+
+    // Homework 2 — Caesar Cipher simulator.
+    disposeHomework = initHmw3Simulator();
+
   } else {
     
-    // Pages without interactive modules.
+    // No interactive components on this page.
     disposeHomework = () => {};
   }
 
