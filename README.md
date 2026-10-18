@@ -1,155 +1,445 @@
+
 # Statistics Lab
 
-An interactive web platform developed to collect and present homework assignments for the **Statistics course — MSc in Cybersecurity**.
+An interactive web platform developed to collect and present
+homework assignments for the **Statistics course — MSc in Cybersecurity**.
 
-The project combines mathematical explanations, JavaScript implementations, interactive simulations, and statistical analysis.
+The project combines mathematical explanations, cryptographic
+implementations, interactive simulations, statistical experiments,
+and security analysis.
 
 **Live Website:** [Statistics Lab](https://petrons01.github.io/statistics-lab/)
 
+---
 
 ## Homeworks
 
-### Homework 1
-
-| Exercise | Topic | Status |
+| Assignment | Topic | Status |
 |---|---|---|
-| Homework 1.1 | Elliptic Curve Cryptography — Private to Public Key | ✅ Completed |
-| Homework 1.2 | Ethereum Wallet — Key Derivation and Hashing | ✅ Completed |
+| Homework 1.1 | Elliptic Curve Cryptography — Private to Public Key | Completed |
+| Homework 1.2 | Ethereum Wallet — Key Derivation and Hashing | Completed |
+| Homework 2 | Encryption, Decryption & Cryptanalysis | Completed |
 
+### Homework 1.1 — Elliptic Curve Cryptography
 
-#### Homework 1.1 — Elliptic Curve Cryptography
+**Route:** `#/hmw1`
 
-An interactive implementation of elliptic-curve scalar multiplication using the toy curve \(y^2 = x^3 + 7 \pmod{17}\).
+An educational introduction to elliptic-curve cryptography
+using the finite-field curve:
+
+`y² = x³ + 7 (mod 17)`
+
+The laboratory explores the relationship between private
+scalars and public points using elliptic-curve arithmetic.
 
 Features:
 
 - Point addition and scalar multiplication.
-- Interactive ECC simulator with step-by-step visualization.
-- Statistical analysis of public key coordinates and bit distributions.
-- Correlation, entropy and Hamming distance analysis.
-- Cryptographic discussion and conclusions.
+- Interactive elliptic-curve simulator.
+- Step-by-step public key derivation.
+- Statistical analysis of generated coordinates.
+- Bit distributions, entropy, correlation and Hamming distance.
+- Mathematical explanations and cryptographic conclusions.
 
+This module uses a small toy curve for educational purposes,
+not the full secp256k1 curve.
 
-#### Homework 1.2 — Ethereum Wallet Pipeline
+### Homework 1.2 — Ethereum Wallet Pipeline
 
-An interactive exploration of Ethereum wallet generation, key derivation, cryptographic hashing, and statistical properties.
+**Route:** `#/hmw2`
+
+An interactive exploration of Ethereum wallet generation,
+hierarchical key derivation, cryptographic hashing,
+and statistical properties.
 
 Features:
 
-- Explanation of BIP-39, BIP-32, BIP-44, secp256k1, Keccak-256 and EIP-55.
-- Interactive wallet derivation from public demonstration mnemonics.
-- Hierarchical private key derivation using BIP-32 and BIP-44.
-- Public key generation using secp256k1.
-- Ethereum address generation using Keccak-256 and EIP-55.
-- Statistical analysis of hash outputs and derived Ethereum addresses.
-- Avalanche effect comparison between Keccak-256 and SHA-512.
-- Bit frequency distributions and Hamming distance analysis.
-- Historical context and comparison between SHA-2, Keccak-256 and SHA-3.
-- Cryptographic discussion and final conclusions.
+- BIP-39 mnemonic phrases.
+- BIP-32 hierarchical deterministic key derivation.
+- BIP-44 derivation paths.
+- secp256k1 private and public keys.
+- Keccak-256 and Ethereum address generation.
+- EIP-55 checksum encoding.
+- Interactive wallet derivation from public demonstration data.
+- Statistical analysis of hashes and addresses.
+- Avalanche effect and Hamming distance experiments.
+- Comparison of SHA-512, Keccak-256 and SHA-3.
+- Historical background and conclusions.
 
-All experiments run locally in the browser using public test data.
+The examples use educational demonstration data and
+must not be used to generate real cryptocurrency wallets.
 
+### Homework 2 — Encryption, Decryption & Cryptanalysis
+
+**Route:** `#/hmw3`
+
+A comparative study of classical and elliptic-curve
+cryptography, including encryption, decryption,
+statistical cryptanalysis, and restricted key-space attacks.
+
+The laboratory implements both the Caesar cipher and
+an educational hybrid encryption scheme based on secp256k1.
+
+#### 1. Caesar Cipher
+
+The Caesar cipher shifts each English letter by a
+secret integer key:
+
+`k ∈ {0, 1, ..., 25}`
+
+Encryption:
+
+`E(k, x) = (x + k) mod 26`
+
+Decryption:
+
+`D(k, y) = (y - k) mod 26`
+
+Features:
+
+- Interactive plaintext encryption and ciphertext decryption.
+- Adjustable Caesar key.
+- Alphabet transformation visualization.
+- Case preservation.
+- Preservation of spaces, digits and punctuation.
+
+The cipher is deterministic and does not provide
+modern cryptographic security.
+
+#### 2. Hybrid secp256k1 Encryption
+
+The ECC laboratory implements an educational ECIES-like
+hybrid encryption construction.
+
+Cryptographic components:
+
+- secp256k1 elliptic-curve key agreement.
+- Ephemeral ECDH key generation.
+- HKDF-SHA256 symmetric key derivation.
+- AES-256-GCM authenticated encryption.
+
+The recipient has a private scalar `d` and public key:
+
+`Q = dG`
+
+The sender generates an ephemeral private scalar `r`
+and public point:
+
+`R = rG`
+
+Both parties calculate the same ECDH shared point:
+
+`S = rQ = dR`
+
+A symmetric key is derived from the shared secret
+and used to encrypt the message with AES-256-GCM.
+
+The encryption package includes:
+
+- Recipient public key.
+- Ephemeral public key.
+- HKDF salt.
+- AES-GCM initialization vector.
+- Ciphertext.
+- Authentication tag.
+
+The ephemeral private key is never transmitted.
+
+For the attack demonstration, the recipient's private
+scalar is deliberately restricted to:
+
+`d ∈ {1, ..., 256}`
+
+This restriction makes the demonstration insecure
+by design.
+
+#### 3. Statistical Cryptanalysis of Caesar
+
+The laboratory attempts to recover an unknown Caesar
+key using statistical properties of English text.
+
+The algorithm:
+
+1. Estimates letter probabilities from a reference corpus.
+2. Evaluates all 26 possible Caesar shifts.
+3. Computes the chi-square score for each candidate.
+4. Ranks candidate keys by increasing score.
+5. Displays the most likely key and recovered plaintext.
+
+The chi-square score measures the discrepancy between
+observed and expected letter frequencies.
+
+The lowest-scoring candidate is a statistical estimate,
+not a guaranteed correct recovery.
+
+The interface displays:
+
+- Most likely key.
+- Number of letters analyzed.
+- Best chi-square score.
+- Gap between the two best candidates.
+- Complete ranking of all 26 keys.
+- Reference and observed letter-frequency charts.
+
+#### 4. Ciphertext Length Experiments
+
+The project evaluates Caesar key recovery on messages
+containing different numbers of English letters.
+
+Tested lengths:
+
+`10, 30, 100, 300, 1000`
+
+For each length, the experiment samples plaintext
+passages, selects Caesar keys, encrypts the messages,
+and attempts statistical key recovery.
+
+Measured statistics:
+
+- Correct key recovery rate.
+- Top-three candidate accuracy.
+- Average rank of the correct key.
+- Average chi-square score gap.
+- Average key recovery execution time.
+
+The experiments support configurable trial counts
+and deterministic seeds for reproducibility.
+
+Results are displayed using interactive charts,
+summary tables and failed-recovery examples.
+
+#### 5. Restricted ECC Key-Space Attack
+
+The laboratory demonstrates an exhaustive private-key
+recovery attack against the intentionally weakened
+secp256k1 configuration.
+
+The attacker knows the recipient public key and
+the encrypted package but does not know the private key.
+
+For every candidate scalar `d`, the attacker computes:
+
+`Q_candidate = dG`
+
+The candidate is compared with the public key
+contained in the captured encryption package.
+
+When a match is found, the recovered scalar is used
+to decrypt the authenticated ciphertext.
+
+The interface reports:
+
+- Recovered private scalar.
+- Number of candidates tested.
+- Key search duration.
+- Decryption duration.
+- Recovered plaintext.
+
+This experiment exploits weak key generation.
+It does not demonstrate a practical break of
+properly configured secp256k1.
+
+#### 6. Cryptographic Comparison
+
+The final section compares Caesar and hybrid ECC
+encryption in terms of:
+
+- Symmetric versus public-key cryptography.
+- Encryption and decryption procedures.
+- Key roles and key-space sizes.
+- Deterministic versus randomized encryption.
+- Statistical properties of ciphertexts.
+- Message integrity.
+- Statistical versus exhaustive-search attacks.
+- Security assumptions and implementation limitations.
+
+---
+
+## Statistical Datasets
+
+The Caesar cryptanalysis experiments use two
+separate English-language text files:
+
+| Dataset | File | Purpose |
+|---|---|---|
+| Reference corpus | `english-reference.txt` | Estimate expected English letter frequencies |
+| Evaluation corpus | `english-evaluation.txt` | Test key recovery on sampled plaintext passages |
+
+Both files are located in:
+
+`data/corpus/`
+
+The laboratory uses synthetic English texts prepared
+for educational experimentation.
+
+The files are separate, but they do not represent
+a comprehensive sample of natural English.
+
+Evaluation passages may overlap across trials.
+Therefore, the experiments are demonstrations of
+statistical behavior rather than independent,
+population-wide estimates of attack accuracy.
+
+For more rigorous studies, larger authentic corpora
+from different genres should be used.
+
+---
 
 ## Project Structure
 
 ```text
 statistics-lab/
-│
-├── index.html                  # Application entry point
-│
-├── css/
-│   └── styles.css              # Global styling and responsive layout
-│
-├── js/
-│   ├── app.js                  # SPA routing and navigation
-│   │
-│   ├── pages/
-│   │   ├── home.js             # Homepage and homework dashboard
-│   │   ├── hmw1.js             # HMW 1.1 page
-│   │   └── hmw2.js             # HMW 1.2 page
-│   │
-│   └── homeworks/
-│       │
-│       ├── hmw1/
-│       │   ├── ecc.js          # Elliptic curve arithmetic
-│       │   ├── simulator.js    # Interactive ECC simulator
-│       │   ├── statistics.js   # ECC statistical computations
-│       │   └── statistics-ui.js# ECC statistical visualizations
-│       │
-│       └── hmw2/
-│           ├── wallet.js       # Ethereum wallet cryptographic operations
-│           ├── wallet-ui.js    # Interactive wallet pipeline interface
-│           ├── statistics.js   # Hash and address statistical analysis
-│           ├── statistics-ui.js# Statistical charts and experiments
-│           └── conclusion.js   # Historical context and conclusions
-│
-└── README.md                   # Project documentation
+|
+|-- index.html
+|-- README.md
+|-- .nojekyll
+|
+|-- css/
+|   `-- styles.css
+|
+|-- assets/
+|   `-- favicon.svg
+|
+|-- data/
+|   `-- corpus/
+|       |-- english-reference.txt
+|       `-- english-evaluation.txt
+|
+`-- js/
+    |-- app.js
+    |
+    |-- pages/
+    |   |-- home.js
+    |   |-- hmw1.js
+    |   |-- hmw2.js
+    |   `-- hmw3.js
+    |
+    `-- homeworks/
+        |
+        |-- hmw1/
+        |   |-- ecc.js
+        |   |-- simulator.js
+        |   |-- statistics.js
+        |   `-- statistics-ui.js
+        |
+        |-- hmw2/
+        |   |-- wallet.js
+        |   |-- wallet-ui.js
+        |   |-- statistics.js
+        |   |-- statistics-ui.js
+        |   `-- conclusion.js
+        |
+        `-- hmw3/
+            |-- caesar.js
+            |-- caesar-attack.js
+            |-- ecc-encryption.js
+            |-- ecc-attack.js
+            |-- ecc-attack-ui.js
+            |-- experiments.js
+            |-- experiments-ui.js
+            |-- statistics-ui.js
+            |-- simulator-ui.js
+            `-- conclusion.js
 ```
 
-### Architecture
+**Note:** The internal folder `hmw3` corresponds to the
+third interactive module, displayed as Homework 2.
 
-The application follows a modular frontend architecture using
-vanilla JavaScript and ES Modules.
+---
 
-- **pages/** contains the HTML rendering functions for each homework.
-- **homeworks/hmw1/** contains the elliptic curve simulator and its statistical analysis.
-- **homeworks/hmw2/** contains Ethereum wallet derivation, statistical experiments, and conclusions.
-- **app.js** manages client-side navigation and initializes the interactive components.
-- **styles.css** provides consistent styling across all homework pages.
+## Architecture
 
-Each homework is implemented independently, allowing new assignments
-to be added without modifying existing cryptographic modules.
+The application follows a modular frontend architecture
+using vanilla JavaScript and ES Modules.
 
+- `js/pages/` contains the page-rendering functions.
+- `js/homeworks/hmw1/` contains the toy ECC laboratory.
+- `js/homeworks/hmw2/` contains the Ethereum wallet laboratory.
+- `js/homeworks/hmw3/` contains encryption and cryptanalysis modules.
+- `js/app.js` manages hash-based navigation and initialization.
+- `css/styles.css` provides shared styling and responsive layouts.
+- `data/corpus/` stores the statistical reference and evaluation texts.
 
-### Homework Organization
+Cryptographic operations, statistical calculations,
+and user-interface rendering are implemented
+in separate JavaScript modules.
 
-Homework 1 contains two independent exercises:
+The project does not require a backend server,
+database or blockchain node.
 
-- **Homework 1.1:** Elliptic Curve Cryptography, implemented in `js/homeworks/hmw1/`.
-- **Homework 1.2:** Ethereum Wallet Pipeline, implemented in `js/homeworks/hmw2/`.
-
-Each exercise has its own page and JavaScript modules.
-
-The logical homework numbering is independent of the physical
-directory names and application routes. This allows the project
-to grow with additional homework groups and exercises.
-
+---
 
 ## Technologies
 
-- HTML5
-- CSS3
-- JavaScript (ES Modules)
-- SVG and CSS-based interactive visualizations
-- ethers.js v6 for Ethereum cryptographic operations
-- Git and GitHub for version control
-- GitHub Pages for deployment
+- HTML5.
+- CSS3.
+- JavaScript with ES Modules.
+- Web Crypto API.
+- ethers.js v6.
+- secp256k1 elliptic-curve cryptography.
+- HKDF-SHA256.
+- AES-256-GCM.
+- SVG and CSS-based data visualizations.
+- Git and GitHub.
+- GitHub Pages.
 
-The application runs entirely in the browser and does not require
-a backend or a blockchain node.
+ethers.js is loaded from a CDN when required
+for elliptic-curve operations.
 
-The Ethereum wallet experiments use public demonstration keys
-and are intended exclusively for educational purposes.
+The Web Crypto API requires a secure context,
+such as HTTPS or localhost.
 
+---
 
 ## Local Development
 
-1. Clone the repository.
-2. Open the project folder in Visual Studio Code.
-3. Start a local HTTP server (e.g. VS Code Live Server).
-4. Open `index.html` through the local server.
+1. Clone the repository:
 
-No backend or build process is required.
+   `git clone https://github.com/petrons01/statistics-lab.git`
+
+2. Open the project folder in Visual Studio Code.
+
+3. Start a local HTTP server, such as VS Code Live Server.
+
+4. Open the application through the local server.
+
+5. Navigate to a homework using the dashboard or sidebar.
+
+No npm installation or frontend build process is required.
+
+Opening `index.html` directly using a `file://` URL
+is not recommended because ES Modules and corpus
+loading require an HTTP environment.
+
+---
 
 ## Deployment
 
-The website is hosted on **GitHub Pages** and automatically deployed from the `main` branch.
+The website is hosted on GitHub Pages and deployed
+from the `main` branch.
 
-New assignments can be integrated by adding independent modules and updating the application navigation.
+Live application:
 
-## Disclaimer
+https://petrons01.github.io/statistics-lab/
 
-All cryptographic implementations are intended for educational purposes only and must not be used to protect real assets or generate production cryptographic keys.
+All simulations run client-side in the browser.
+
+---
+
+## Security Disclaimer
+
+All cryptographic implementations are intended
+exclusively for educational purposes.
+
+The toy ECC and restricted private-key demonstrations
+are intentionally insecure.
+
+The hybrid ECC implementation is not a production-ready
+encryption protocol and does not authenticate the sender
+or establish the authenticity of distributed public keys.
+
+Do not use these implementations to protect real data,
+manage cryptocurrency assets or generate production keys.
 
 ---
 

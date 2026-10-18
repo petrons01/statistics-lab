@@ -126,7 +126,7 @@ export function renderHome() {
           </h3>
 
           <span class="section-counter">
-            0/1 COMPLETED
+            1/1 COMPLETED
           </span>
 
         </div>
@@ -180,9 +180,10 @@ export function renderHome() {
               <span class="tag">
                 ECC · CAESAR · CRYPTANALYSIS
               </span>
-
-              <span class="homework-status homework-status--planned">
-                Planned
+              
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
               </span>
 
             </div>
@@ -197,7 +198,7 @@ export function renderHome() {
 
 
     <section class="section approach-section" aria-labelledby="approach-title">
-      <div class="section-heading"><div><div class="eyebrow small">HOW IT WORKS</div><h2 id="approach-title">This site contains all the homweworks.</h2><p>Each Homeworks unit is structured like this:</p></div></div>
+      <div class="section-heading"><div><div class="eyebrow small">HOW IT WORKS</div><h2 id="approach-title">How the Lab is organized</h2><p>Each Homeworks unit is structured like this:</p></div></div>
       <div class="approach-grid">
         <div class="approach-item"><span class="approach-num">01 /</span><h3>Backgrounds</h3><p>Understand mathematical concepts, definitions, and formulas.</p></div>
         <div class="approach-item"><span class="approach-num">02 /</span><h3>Dynamic experiment</h3><p>Interact with algorithms, examples, and simulations..</p></div>
