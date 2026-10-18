@@ -3215,3 +3215,375 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
   }
 
 }
+
+/* =====================================================
+   HOMEWORK 2 — ECC RESTRICTED KEY-SPACE ATTACK
+   ===================================================== */
+
+/* Main attack laboratory */
+
+.hmw3-ecc-attack-lab {
+  margin-top: 28px;
+  min-width: 0;
+}
+
+/* Section headings */
+
+.hmw3-ecc-attack-lab .hmw3-caesar-block h3,
+.hmw3-ecc-attack-explanation h3 {
+  margin: 0 0 12px;
+
+  color: #d7f5ee;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+
+/* =====================================================
+   CAPTURED CIPHERTEXT PACKAGE
+   ===================================================== */
+
+#hmw3-ecc-attack-packet {
+  width: 100%;
+  min-height: 220px;
+  max-height: 500px;
+
+  box-sizing: border-box;
+
+  background: #0b1a27;
+  border: 1px solid #355464;
+  border-radius: 9px;
+
+  color: #c3e4e8;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.8;
+
+  resize: vertical;
+  overflow-wrap: anywhere;
+}
+
+#hmw3-ecc-attack-packet:focus {
+  border-color: #5bd1bc;
+  box-shadow: 0 0 0 3px rgba(91, 209, 188, 0.12);
+}
+
+/* Copy ciphertext button */
+
+.hmw3-ecc-attack-copy-action {
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 16px;
+}
+
+.hmw3-ecc-attack-copy-action
+.hmw3-caesar-button {
+  min-width: 190px;
+}
+
+
+/* =====================================================
+   SEARCH RANGE CONFIGURATION
+   ===================================================== */
+
+.hmw3-ecc-attack-range {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.hmw3-ecc-attack-range > div {
+  min-width: 0;
+}
+
+.hmw3-ecc-attack-range
+.hmw3-caesar-label {
+  margin-bottom: 10px;
+}
+
+.hmw3-ecc-attack-range
+.hmw3-ecc-key-input {
+  width: 100%;
+  max-width: 250px;
+  min-height: 46px;
+}
+
+/* Highlight invalid numeric values */
+
+.hmw3-ecc-attack-range
+.hmw3-ecc-key-input:invalid {
+  border-color: #c4806b;
+}
+
+
+/* =====================================================
+   RUN ATTACK BUTTON
+   ===================================================== */
+
+.hmw3-ecc-attack-actions {
+  margin: 28px 0 18px;
+}
+
+.hmw3-ecc-attack-actions
+.hmw3-caesar-button {
+  width: 100%;
+  min-height: 48px;
+
+  font-size: 13px;
+}
+
+/* Disabled state */
+
+.hmw3-ecc-attack-lab
+.hmw3-caesar-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =====================================================
+   ATTACK STATUS
+   ===================================================== */
+
+#hmw3-ecc-attack-status {
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+#hmw3-ecc-attack-status[data-state="success"] {
+  background: #10332e;
+  border-color: #347663;
+
+  color: #a4efd5;
+}
+
+#hmw3-ecc-attack-status[data-state="error"] {
+  background: #352322;
+  border-color: #9b534b;
+
+  color: #ffbdb4;
+}
+
+
+/* =====================================================
+   ATTACK RESULTS
+   ===================================================== */
+
+#hmw3-ecc-attack-results {
+  margin-top: 30px;
+}
+
+/*
+ * Explicit hidden rules prevent other display
+ * declarations from revealing inactive content.
+ */
+
+#hmw3-ecc-attack-results[hidden],
+#hmw3-ecc-attack-plaintext-block[hidden] {
+  display: none;
+}
+
+
+/* =====================================================
+   KEY RECOVERY METRICS
+   ===================================================== */
+
+.hmw3-ecc-attack-metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+/*
+ * Reuse .hmw3-attack-metric from Section 07.
+ */
+
+.hmw3-ecc-attack-metrics
+.hmw3-attack-metric {
+  min-width: 0;
+  min-height: 110px;
+  padding: 18px;
+}
+
+/* First metric: recovered private scalar */
+
+.hmw3-ecc-attack-metrics
+.hmw3-attack-metric:first-child {
+  background: #10332e;
+  border-color: #347663;
+}
+
+.hmw3-ecc-attack-metrics
+.hmw3-attack-metric:first-child strong {
+  color: #94efd0;
+}
+
+/* Prevent long numbers from overflowing */
+
+.hmw3-ecc-attack-metrics
+.hmw3-attack-metric strong {
+  font-size: 22px;
+
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =====================================================
+   RECOVERED PLAINTEXT
+   ===================================================== */
+
+#hmw3-ecc-attack-plaintext-block {
+  margin-top: 28px;
+}
+
+#hmw3-ecc-attack-plaintext {
+  background: #10332e;
+  border-color: #347663;
+
+  color: #b5f1dd;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.8;
+
+  min-height: 100px;
+}
+
+
+/* =====================================================
+   ATTACK INTERPRETATION
+   ===================================================== */
+
+.hmw3-ecc-attack-interpretation {
+  margin-top: 16px;
+  padding: 20px;
+
+  background: #102532;
+
+  border: 1px solid #355464;
+  border-left: 3px solid #5bd1bc;
+  border-radius: 9px;
+
+  color: #bfd9da;
+
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+
+/* =====================================================
+   SECURITY EXPLANATION
+   ===================================================== */
+
+.hmw3-ecc-attack-explanation {
+  margin-top: 34px;
+  padding-top: 26px;
+
+  border-top: 1px solid #29454e;
+}
+
+.hmw3-ecc-attack-explanation p {
+  color: #b6cbd0;
+
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.hmw3-ecc-attack-explanation
+.panel-note {
+  margin-top: 18px;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+  .hmw3-ecc-attack-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .hmw3-ecc-attack-range {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hmw3-ecc-attack-range
+  .hmw3-ecc-key-input {
+    max-width: none;
+  }
+
+  .hmw3-ecc-attack-copy-action
+  .hmw3-caesar-button {
+    width: 100%;
+  }
+
+  #hmw3-ecc-attack-packet {
+    padding: 12px;
+
+    min-height: 180px;
+    font-size: 11px;
+  }
+
+  .hmw3-ecc-attack-metrics {
+    gap: 10px;
+  }
+
+  .hmw3-ecc-attack-metrics
+  .hmw3-attack-metric {
+    padding: 14px;
+    min-height: 90px;
+  }
+
+  .hmw3-ecc-attack-metrics
+  .hmw3-attack-metric strong {
+    font-size: 19px;
+  }
+
+  .hmw3-ecc-attack-interpretation {
+    padding: 15px;
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  .hmw3-ecc-attack-metrics {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #hmw3-ecc-attack-packet {
+    transition: none;
+  }
+
+}

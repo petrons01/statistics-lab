@@ -36,6 +36,11 @@ import {
   initHmw3Experiments
 } from './experiments-ui.js';
 
+import {
+  renderHmw3EccAttack,
+  initHmw3EccAttack
+} from './ecc-attack-ui.js';
+
 
 
 const DEFAULT_MESSAGE = 'ATTACK AT DAWN';
@@ -375,6 +380,12 @@ export function renderHmw3Simulator() {
 
     ${renderHmw3Experiments()}
 
+    <!-- ==========================================
+         09 / ECC RESTRICTED KEY-SPACE ATTACK
+         ========================================== -->
+
+    ${renderHmw3EccAttack()}
+
 
   `;
 }
@@ -709,6 +720,8 @@ export function initHmw3Simulator() {
   // Initialize ciphertext length experiments.
   const cleanupExperiments = initHmw3Experiments();
 
+  const cleanupEccAttack = initHmw3EccAttack();
+
   /*
    * Cleanup when leaving Homework 2.
    */
@@ -717,6 +730,7 @@ export function initHmw3Simulator() {
     cleanupEcc();
     cleanupStatistics();
     cleanupExperiments();
+    cleanupEccAttack();
   };
 
 
