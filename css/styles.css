@@ -1963,3 +1963,289 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
     transition: none;
   }
 }
+
+/* =====================================================
+   HOMEWORK 2 — ECC ENCRYPTION & DECRYPTION SIMULATOR
+   ===================================================== */
+
+/* Main ECC laboratory section */
+
+.hmw3-ecc-lab {
+  margin-top: 28px;
+  min-width: 0;
+}
+
+
+/* =====================================================
+   PRIVATE KEY INPUT
+   ===================================================== */
+
+.hmw3-ecc-key-input {
+  display: block;
+
+  width: 180px;
+  max-width: 100%;
+  min-height: 46px;
+
+  box-sizing: border-box;
+  padding: 10px 14px;
+
+  background: #0b1a27;
+  border: 1px solid #355464;
+  border-radius: 9px;
+
+  color: #aef0da;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 16px;
+  font-weight: 650;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hmw3-ecc-key-input:focus {
+  border-color: #5bd1bc;
+  box-shadow: 0 0 0 3px rgba(91, 209, 188, 0.12);
+}
+
+.hmw3-ecc-key-input:invalid {
+  border-color: #c4806b;
+}
+
+
+/* =====================================================
+   CRYPTOGRAPHIC DATA DISPLAY
+   ===================================================== */
+
+/*
+ * Used for:
+ * - Shared plaintext
+ * - Receiver public key
+ * - Encrypted JSON package
+ *
+ * Long hexadecimal strings automatically wrap.
+ */
+
+.hmw3-ecc-data {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  max-height: 420px;
+
+  box-sizing: border-box;
+
+  margin: 10px 0 0;
+  padding: 16px 18px;
+
+  background: #0b1a27;
+  border: 1px solid #31515e;
+  border-radius: 9px;
+
+  color: #b9efe1;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.9;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  overflow-x: auto;
+  overflow-y: auto;
+
+  user-select: text;
+}
+
+/* Empty data placeholders */
+
+.hmw3-ecc-data:empty::before {
+  content: "Awaiting encryption...";
+  color: #829aa6;
+  font-style: italic;
+}
+
+
+/* =====================================================
+   SHARED PLAINTEXT
+   ===================================================== */
+
+/* First input block in the ECC laboratory */
+
+.hmw3-ecc-lab > .hmw3-caesar-block:first-of-type
+.hmw3-ecc-data {
+  background: #102c30;
+  border-color: #356a62;
+
+  color: #c5f7e9;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   ENCRYPTION / DECRYPTION BUTTONS
+   ===================================================== */
+
+/* Two equally sized action buttons */
+
+.hmw3-ecc-lab .hmw3-caesar-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Disabled buttons */
+
+.hmw3-ecc-lab .hmw3-caesar-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  transform: none;
+  filter: none;
+}
+
+/* Primary encryption button */
+
+.hmw3-ecc-lab .hmw3-caesar-primary {
+  background: #5bd1bc;
+  border-color: #5bd1bc;
+
+  color: #092a2d;
+}
+
+.hmw3-ecc-lab .hmw3-caesar-primary:hover:not(:disabled) {
+  background: #85e5d2;
+  border-color: #85e5d2;
+}
+
+
+/* =====================================================
+   ENCRYPTION RESULTS
+   ===================================================== */
+
+/* Keep results hidden until encryption succeeds */
+
+#hmw3-ecc-results[hidden] {
+  display: none;
+}
+
+/* Space between individual output sections */
+
+#hmw3-ecc-results {
+  margin-top: 24px;
+}
+
+#hmw3-ecc-results .hmw3-caesar-block {
+  margin-top: 26px;
+}
+
+/* Receiver public key */
+
+#hmw3-ecc-public-key {
+  color: #a6dfef;
+}
+
+/* Encrypted package */
+
+#hmw3-ecc-packet {
+  background: #102532;
+  border-color: #35586a;
+
+  color: #d2e5ef;
+
+  max-height: 360px;
+}
+
+/* Decrypted plaintext */
+
+#hmw3-ecc-decrypted {
+  background: #10332e;
+  border-color: #347663;
+
+  color: #a4efd5;
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   STATUS MESSAGES
+   ===================================================== */
+
+/*
+ * Reuse the existing Caesar status classes.
+ * The following rules adjust ECC-specific spacing.
+ */
+
+#hmw3-ecc-status {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+/* Successful encryption or decryption */
+
+#hmw3-ecc-status[data-state="success"] {
+  background: #10332e;
+  border-color: #347663;
+  color: #a4efd5;
+}
+
+/* Invalid key or failed decryption */
+
+#hmw3-ecc-status[data-state="error"] {
+  background: #352322;
+  border-color: #9b534b;
+  color: #ffbdb4;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 650px) {
+
+  .hmw3-ecc-lab .hmw3-caesar-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .hmw3-ecc-lab .hmw3-caesar-button {
+    width: 100%;
+  }
+
+  .hmw3-ecc-key-input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .hmw3-ecc-data {
+    padding: 12px;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  #hmw3-ecc-packet {
+    max-height: 300px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hmw3-ecc-key-input {
+    transition: none;
+  }
+
+}

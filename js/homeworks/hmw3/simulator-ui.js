@@ -10,10 +10,19 @@
  * separately in caesar.js.
  */
 
+
 import {
   caesarEncrypt,
   caesarDecrypt
 } from './caesar.js';
+
+import {
+  ECC_DEMO_DEFAULT_KEY,
+  createDemoEccKeyPair,
+  encryptEccMessage,
+  decryptEccMessage
+} from './ecc-encryption.js';
+
 
 
 const DEFAULT_MESSAGE = 'ATTACK AT DAWN';
@@ -331,7 +340,15 @@ export function renderHmw3Simulator() {
 
       </div>
 
+
     </section>
+
+
+    <!-- ==========================================
+         06 / INTERACTIVE ECC ENCRYPTION
+         ========================================== -->
+
+    ${renderHmw3EccLab()}
 
   `;
 }
@@ -651,14 +668,576 @@ export function initHmw3Simulator() {
   updateAlphabet();
 
   // Show the initial example ciphertext.
+  // Show the initial example Caesar ciphertext.
   encryptMessage();
 
+  // Initialize ECC using the same plaintext input.
+  const cleanupEcc = initHmw3EccLab(
+    plaintextInput,
+    resetButton
+  );
 
   /*
    * Cleanup when leaving Homework 2.
    */
   return () => {
     controller.abort();
+    cleanupEcc();
+  };
+
+}
+
+
+/*
+ * =====================================================
+ * HOMEWORK 2 — ECC ENCRYPTION & DECRYPTION UI
+ * =====================================================
+ *
+ * The ECC laboratory reuses the plaintext entered
+ * in the Caesar Cipher simulator.
+ */
+
+
+/*
+ * Render the ECC encryption and decryption panel.
+ */
+function renderHmw3EccLab() {
+  return `
+    <!-- ==========================================
+         06 / INTERACTIVE ECC ENCRYPTION
+         ========================================== -->
+
+    <section
+      class="panel hmw3-ecc-lab"
+      id="hmw3-ecc-lab"
+      aria-labelledby="hmw3-ecc-title"
+    >
+
+      <div class="panel-label">
+        06 / INTERACTIVE ECC ENCRYPTION
+      </div>
+
+      <h2 id="hmw3-ecc-title">
+        ECC Encryption & Decryption
+      </h2>
+
+      <p>
+        Encrypt the same plaintext used in the Caesar experiment.
+        This educational scheme uses secp256k1 ECDH,
+        HKDF-SHA256, and AES-256-GCM.
+      </p>
+
+      <p class="panel-note">
+        Demonstration only: the receiver's private scalar is
+        deliberately restricted to 1–256.
+        Never use these keys to secure real data.
+      </p>
+
+
+      <!-- SHARED PLAINTEXT -->
+
+      <div class="hmw3-caesar-block">
+
+        <span class="hmw3-caesar-label">
+          Shared plaintext (from Caesar)
+        </span>
+
+        <pre
+          id="hmw3-ecc-shared-text"
+          class="hmw3-ecc-data"
+        ></pre>
+
+      </div>
+
+
+      <!-- RECEIVER PRIVATE KEY -->
+
+      <div class="hmw3-caesar-block">
+
+        <label
+          class="hmw3-caesar-label"
+          for="hmw3-ecc-key"
+        >
+          Receiver private scalar d (1–256)
+        </label>
+
+        <input
+          type="number"
+          id="hmw3-ecc-key"
+          class="hmw3-ecc-key-input"
+          min="1"
+          max="256"
+          step="1"
+          value="42"
+        />
+
+        <p class="hmw3-caesar-help">
+          This is an intentionally weak demonstration key.
+          Select another value after encryption to test
+          decryption with an incorrect private key.
+        </p>
+
+      </div>
+
+
+      <!-- ENCRYPTION AND DECRYPTION BUTTONS -->
+
+      <div class="hmw3-caesar-actions">
+
+        <button
+          type="button"
+          id="hmw3-ecc-encrypt"
+          class="hmw3-caesar-button hmw3-caesar-primary"
+        >
+          Encrypt with ECC →
+        </button>
+
+        <button
+          type="button"
+          id="hmw3-ecc-decrypt"
+          class="hmw3-caesar-button"
+          disabled
+        >
+          ← Decrypt with Selected Key
+        </button>
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <p
+        id="hmw3-ecc-status"
+        class="hmw3-caesar-status"
+        role="status"
+        aria-live="polite"
+      >
+        Choose a demonstration key and click Encrypt with ECC.
+      </p>
+
+
+      <!-- ENCRYPTION RESULTS -->
+
+      <div id="hmw3-ecc-results" hidden>
+
+        <!-- RECEIVER PUBLIC KEY -->
+
+        <div class="hmw3-caesar-block">
+
+          <span class="hmw3-caesar-label">
+            Receiver public key Q = dG
+          </span>
+
+          <pre
+            id="hmw3-ecc-public-key"
+            class="hmw3-ecc-data"
+          ></pre>
+
+        </div>
+
+
+        <!-- ENCRYPTED PACKAGE -->
+
+        <div class="hmw3-caesar-block">
+
+          <span class="hmw3-caesar-label">
+            Encrypted package (public data for transmission)
+          </span>
+
+          <pre
+            id="hmw3-ecc-packet"
+            class="hmw3-ecc-data"
+          ></pre>
+
+          <p class="hmw3-caesar-help">
+            Contains the ephemeral public key, HKDF salt,
+            AES-GCM IV, ciphertext and authentication tag.
+            No ephemeral private key is transmitted.
+          </p>
+
+        </div>
+
+
+        <!-- DECRYPTED MESSAGE -->
+
+        <div class="hmw3-caesar-block">
+
+          <label
+            for="hmw3-ecc-decrypted"
+            class="hmw3-caesar-label"
+          >
+            Decrypted message
+          </label>
+
+          <textarea
+            id="hmw3-ecc-decrypted"
+            class="hmw3-caesar-textarea"
+            rows="3"
+            readonly
+            placeholder="Click Decrypt with Selected Key..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+
+/*
+ * Initialize the ECC simulator.
+ *
+ * @param {HTMLTextAreaElement} plaintextInput
+ *   Shared plaintext input from the Caesar simulator.
+ *
+ * @param {HTMLButtonElement} caesarResetButton
+ *   Reset button from the Caesar simulator.
+ *
+ * @returns {Function} Cleanup callback.
+ */
+function initHmw3EccLab(
+  plaintextInput,
+  caesarResetButton
+) {
+
+  const root = document.getElementById(
+    'hmw3-ecc-lab'
+  );
+
+  if (!root) {
+    return () => {};
+  }
+
+
+  // Select elements inside the ECC laboratory.
+  const get = id => root.querySelector(`#${id}`);
+
+  const keyInput = get('hmw3-ecc-key');
+  const sharedText = get('hmw3-ecc-shared-text');
+
+  const encryptButton = get('hmw3-ecc-encrypt');
+  const decryptButton = get('hmw3-ecc-decrypt');
+
+  const status = get('hmw3-ecc-status');
+  const results = get('hmw3-ecc-results');
+
+  const publicKeyOutput = get('hmw3-ecc-public-key');
+  const packetOutput = get('hmw3-ecc-packet');
+  const decryptedOutput = get('hmw3-ecc-decrypted');
+
+
+  // Event listener cleanup.
+  const controller = new AbortController();
+
+  // Prevent updates after navigating away.
+  let active = true;
+
+  // Identify the latest asynchronous operation.
+  let revision = 0;
+
+  // Last successfully encrypted ECC package.
+  let packet = null;
+
+
+  /*
+   * Display a status message.
+   */
+  function setStatus(message, state = 'info') {
+    status.textContent = message;
+    status.dataset.state = state;
+  }
+
+
+  /*
+   * Enable or disable the action buttons.
+   */
+  function setBusy(busy) {
+    encryptButton.disabled = busy;
+    decryptButton.disabled = busy || packet === null;
+  }
+
+
+  /*
+   * Clear previous encryption results when the
+   * shared plaintext changes.
+   */
+  function clearPacket() {
+
+    revision++;
+
+    packet = null;
+
+    sharedText.textContent = plaintextInput.value;
+
+    results.hidden = true;
+
+    publicKeyOutput.textContent = '';
+    packetOutput.textContent = '';
+
+    decryptedOutput.value = '';
+
+    setBusy(false);
+
+    setStatus(
+      'Plaintext updated. Encrypt again to create a new ECC package.'
+    );
+
+  }
+
+
+  /*
+   * Encrypt the current plaintext using ECC.
+   */
+  async function encryptMessage() {
+
+    const message = plaintextInput.value;
+    const scalar = Number(keyInput.value);
+
+    const current = ++revision;
+
+    if (message.length === 0) {
+
+      clearPacket();
+
+      setStatus(
+        'Enter a plaintext message first.',
+        'error'
+      );
+
+      return;
+    }
+
+    packet = null;
+    results.hidden = true;
+
+    decryptedOutput.value = '';
+
+    setBusy(true);
+
+    setStatus(
+      'Deriving the receiver public key and encrypting locally…'
+    );
+
+    try {
+
+      // 1. Generate the receiver's weak key pair.
+      const receiver = await createDemoEccKeyPair(
+        scalar
+      );
+
+      // 2. Encrypt using the receiver's public key.
+      const encrypted = await encryptEccMessage(
+        message,
+        receiver.publicKey
+      );
+
+      if (!active || current !== revision) {
+        return;
+      }
+
+      // 3. Store the encrypted package.
+      packet = encrypted;
+
+      // 4. Display the results.
+      publicKeyOutput.textContent = receiver.publicKey;
+
+      packetOutput.textContent = JSON.stringify(
+        encrypted,
+        null,
+        2
+      );
+
+      results.hidden = false;
+
+      setStatus(
+        'ECC encryption completed. The package is ready for decryption.',
+        'success'
+      );
+
+    } catch (error) {
+
+      if (!active || current !== revision) {
+        return;
+      }
+
+      setStatus(error.message, 'error');
+
+      console.error(
+        'ECC encryption failed:',
+        error
+      );
+
+    } finally {
+
+      if (active && current === revision) {
+        setBusy(false);
+      }
+
+    }
+
+  }
+
+
+  /*
+   * Decrypt the stored ECC package using the
+   * currently selected private scalar.
+   */
+  async function decryptMessage() {
+
+    if (!packet) {
+
+      setStatus(
+        'Encrypt a message before attempting decryption.',
+        'error'
+      );
+
+      return;
+    }
+
+    const current = ++revision;
+
+    const scalar = Number(keyInput.value);
+
+    setBusy(true);
+
+    decryptedOutput.value = '';
+
+    setStatus(
+      'Attempting decryption with the selected private scalar…'
+    );
+
+    try {
+
+      const recovered = await decryptEccMessage(
+        packet,
+        scalar
+      );
+
+      if (!active || current !== revision) {
+        return;
+      }
+
+      decryptedOutput.value = recovered;
+
+      setStatus(
+        'Authenticated decryption succeeded: original plaintext recovered.',
+        'success'
+      );
+
+    } catch (error) {
+
+      if (!active || current !== revision) {
+        return;
+      }
+
+      setStatus(error.message, 'error');
+
+    } finally {
+
+      if (active && current === revision) {
+        setBusy(false);
+      }
+
+    }
+
+  }
+
+
+  /*
+   * Update the ECC experiment when the plaintext
+   * changes in the Caesar simulator.
+   */
+  plaintextInput.addEventListener(
+    'input',
+    clearPacket,
+    { signal: controller.signal }
+  );
+
+
+  /*
+   * Allow testing the current ciphertext
+   * with a different private-key candidate.
+   */
+  keyInput.addEventListener(
+    'input',
+    () => {
+
+      revision++;
+
+      decryptedOutput.value = '';
+
+      setBusy(false);
+
+      setStatus(
+        packet
+          ? 'Key changed. Try decrypting the existing packet with this candidate.'
+          : 'Key selected. Click Encrypt with ECC.'
+      );
+
+    },
+    { signal: controller.signal }
+  );
+
+
+  /*
+   * Reset the ECC experiment when Caesar
+   * is reset to the default plaintext.
+   */
+  caesarResetButton.addEventListener(
+    'click',
+    () => {
+
+      keyInput.value = String(
+        ECC_DEMO_DEFAULT_KEY
+      );
+
+      clearPacket();
+
+    },
+    { signal: controller.signal }
+  );
+
+
+  /*
+   * ECC encryption button.
+   */
+  encryptButton.addEventListener(
+    'click',
+    () => void encryptMessage(),
+    { signal: controller.signal }
+  );
+
+
+  /*
+   * ECC decryption button.
+   */
+  decryptButton.addEventListener(
+    'click',
+    () => void decryptMessage(),
+    { signal: controller.signal }
+  );
+
+
+  /*
+   * Initial state.
+   */
+  sharedText.textContent = plaintextInput.value;
+
+  setBusy(false);
+
+
+  /*
+   * Cleanup when leaving Homework 2.
+   */
+  return () => {
+
+    active = false;
+    revision++;
+
+    controller.abort();
+
   };
 
 }
