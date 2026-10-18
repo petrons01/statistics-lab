@@ -41,6 +41,10 @@ import {
   initHmw3EccAttack
 } from './ecc-attack-ui.js';
 
+import {
+  renderHmw3Conclusion
+} from './conclusion.js';
+
 
 
 const DEFAULT_MESSAGE = 'ATTACK AT DAWN';
@@ -385,6 +389,12 @@ export function renderHmw3Simulator() {
          ========================================== -->
 
     ${renderHmw3EccAttack()}
+
+    <!-- ==========================================
+         10 / CRYPTOGRAPHIC COMPARISON & CONCLUSIONS
+         ========================================== -->
+
+    ${renderHmw3Conclusion()}
 
 
   `;

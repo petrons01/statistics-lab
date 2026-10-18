@@ -3587,3 +3587,389 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
   }
 
 }
+
+/* =====================================================
+   HOMEWORK 2 — CRYPTOGRAPHIC CONCLUSIONS
+   ===================================================== */
+
+/* Main conclusion panel */
+
+.hmw3-conclusion {
+  margin-top: 32px;
+  min-width: 0;
+}
+
+.hmw3-conclusion > h2 {
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+
+/* Introduction */
+
+.hmw3-conclusion > p {
+  color: #b9d0d6;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+
+/* =====================================================
+   THEORETICAL SECTIONS
+   ===================================================== */
+
+.hmw3-conclusion-section {
+  margin-top: 38px;
+  padding-top: 30px;
+
+  border-top: 1px solid #29454e;
+}
+
+.hmw3-conclusion-section h3 {
+  margin: 0 0 22px;
+
+  color: #d7f5ee;
+  font-size: 19px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.hmw3-conclusion-section h4 {
+  margin: 26px 0 12px;
+
+  color: #a7ead8;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.hmw3-conclusion-section p {
+  margin: 0 0 16px;
+
+  color: #b9d0d6;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.hmw3-conclusion-section .math-display {
+  margin: 18px 0;
+
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
+/* =====================================================
+   CRYPTOGRAPHIC COMPARISON TABLE
+   ===================================================== */
+
+.hmw3-conclusion-table-wrap {
+  width: 100%;
+  min-width: 0;
+  margin-top: 22px;
+
+  border: 1px solid #355464;
+  border-radius: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.hmw3-conclusion-table {
+  width: 100%;
+  min-width: 780px;
+
+  border-collapse: collapse;
+
+  background: #0c1e2b;
+  color: #c3dce1;
+
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* Table description */
+
+.hmw3-conclusion-table caption {
+  padding: 15px 18px;
+
+  background: #102532;
+
+  color: #93aeb9;
+  font-size: 11px;
+  text-align: left;
+}
+
+/* Table header */
+
+.hmw3-conclusion-table thead {
+  background: #193745;
+}
+
+.hmw3-conclusion-table th,
+.hmw3-conclusion-table td {
+  padding: 16px 18px;
+
+  border-bottom: 1px solid #29454e;
+
+  text-align: left;
+  vertical-align: top;
+}
+
+.hmw3-conclusion-table thead th {
+  color: #c4ebe6;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* Property column */
+
+.hmw3-conclusion-table tbody th {
+  width: 25%;
+  min-width: 180px;
+
+  color: #a7ead8;
+  font-weight: 650;
+
+  background: #102532;
+}
+
+/* Comparison columns */
+
+.hmw3-conclusion-table tbody td {
+  width: 37.5%;
+  min-width: 210px;
+
+  color: #bed4da;
+  overflow-wrap: break-word;
+}
+
+/* Zebra striping */
+
+.hmw3-conclusion-table tbody tr:nth-child(even) td {
+  background: #102633;
+}
+
+.hmw3-conclusion-table tbody tr:hover td {
+  background: #17333d;
+}
+
+/* Last table row */
+
+.hmw3-conclusion-table tbody tr:last-child th,
+.hmw3-conclusion-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =====================================================
+   KEY-SPACE COMPARISON
+   ===================================================== */
+
+.hmw3-conclusion-keyspaces {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+  margin: 24px 0 30px;
+}
+
+.hmw3-conclusion-keyspace {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: 20px 18px;
+
+  background: #102532;
+  border: 1px solid #355464;
+  border-radius: 10px;
+}
+
+.hmw3-conclusion-keyspace span {
+  margin-bottom: 12px;
+
+  color: #9ebbc4;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.hmw3-conclusion-keyspace strong {
+  display: block;
+  margin-bottom: 14px;
+
+  color: #e0f2ed;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 20px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.hmw3-conclusion-keyspace p {
+  margin: 0;
+
+  color: #a9c0c9;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Highlight full secp256k1 key space */
+
+.hmw3-conclusion-keyspace:last-child {
+  background: #10332e;
+  border-color: #347663;
+}
+
+.hmw3-conclusion-keyspace:last-child strong {
+  color: #94efd0;
+}
+
+
+/* =====================================================
+   KEY OBSERVATIONS
+   ===================================================== */
+
+/*
+ * Reuse .hmw2-key-idea from previous homework modules.
+ */
+
+.hmw3-conclusion .hmw2-key-idea {
+  margin: 24px 0;
+
+  padding: 20px;
+
+  background: #10332e;
+  border: 1px solid #347663;
+  border-left: 3px solid #5bd1bc;
+  border-radius: 9px;
+}
+
+.hmw3-conclusion .hmw2-key-idea strong {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #a4efd5;
+  font-size: 13px;
+}
+
+.hmw3-conclusion .hmw2-key-idea p {
+  margin: 0;
+
+  color: #c2e5da;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+
+/* =====================================================
+   FINAL CONCLUSION
+   ===================================================== */
+
+.hmw3-conclusion-final {
+  margin-top: 42px;
+  padding: 30px;
+
+  background: #102532;
+  border: 1px solid #355464;
+  border-radius: 12px;
+}
+
+.hmw3-conclusion-final h3 {
+  color: #a7ead8;
+}
+
+.hmw3-conclusion-final > p {
+  color: #c3dce1;
+}
+
+.hmw3-conclusion-final .hmw2-key-idea {
+  margin-bottom: 0;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 950px) {
+
+  .hmw3-conclusion-keyspaces {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .hmw3-conclusion-keyspace:last-child {
+    grid-column: 1 / -1;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .hmw3-conclusion-section {
+    margin-top: 30px;
+    padding-top: 24px;
+  }
+
+  .hmw3-conclusion-section h3 {
+    font-size: 17px;
+  }
+
+  .hmw3-conclusion-section h4 {
+    font-size: 14px;
+  }
+
+  .hmw3-conclusion-section p {
+    font-size: 12px;
+  }
+
+  .hmw3-conclusion-keyspaces {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hmw3-conclusion-keyspace:last-child {
+    grid-column: auto;
+  }
+
+  .hmw3-conclusion-keyspace {
+    padding: 16px;
+  }
+
+  .hmw3-conclusion-table {
+    min-width: 700px;
+  }
+
+  .hmw3-conclusion-table th,
+  .hmw3-conclusion-table td {
+    padding: 13px 14px;
+  }
+
+  .hmw3-conclusion-final {
+    padding: 20px 16px;
+  }
+
+  .hmw3-conclusion .hmw2-key-idea {
+    padding: 16px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hmw3-conclusion-table tbody tr {
+    transition: none;
+  }
+
+}
