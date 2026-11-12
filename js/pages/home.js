@@ -27,7 +27,7 @@ export function renderHome() {
           <h2 id="hw-title">Homework collection</h2>
         </div>
 
-        <span class="section-counter">02 UNITS · 04 EXERCISES</span>
+        <span class="section-counter">04 UNITS · 06 EXERCISES</span>
       </div>
 
       <!-- HOMEWORK 1 -->
@@ -268,6 +268,103 @@ export function renderHome() {
                 Done
               </span>
 
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+          HOMEWORK 4 (internal routes /hmw5 and /hmw6)
+          ========================================== -->
+
+      <section class="homework-unit" aria-labelledby="homework-4-title">
+
+        <div class="section-heading">
+
+          <h3 id="homework-4-title">
+            Homework 4
+          </h3>
+
+          <span class="section-counter">
+            2/2 COMPLETED
+          </span>
+
+        </div>
+
+
+        <div class="homework-grid">
+
+          <!-- Homework 4.1: Welford's recurrence formulas -->
+          <a class="homework-card" href="#/hmw5">
+
+            <div class="card-top">
+              <span class="card-code">HMW / 4.1</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+              <span>M<sub>k−1</sub></span>
+              <i>→</i>
+              <span>M<sub>k</sub></span>
+              <i>→</i>
+              <span>SS<sub>k</sub></span>
+            </div>
+
+            <h3>Welford's Recurrence<br />Formulas</h3>
+
+            <p>
+              Derive and implement the one-pass recurrences for the
+              mean, the sum of squares and the variance, and see why
+              they are numerically stable.
+            </p>
+
+            <div class="card-bottom">
+              <span class="tag">KNUTH · WELFORD · STABILITY</span>
+
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
+              </span>
+            </div>
+
+          </a>
+
+          <!-- Homework 4.2: Sampling mean and variance -->
+          <a class="homework-card" href="#/hmw6">
+
+            <div class="card-top">
+              <span class="card-code">HMW / 4.2</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+              <span>SCORES</span>
+              <i>→</i>
+              <span>x̄, s²</span>
+              <i>→</i>
+              <span>μ, σ²</span>
+            </div>
+
+            <h3>Sampling Mean<br />and Variance</h3>
+
+            <p>
+              Give every attempt a score from 0 to 10 and compare the
+              hackers' sampling means and variances with μ and σ²
+              as the number of systems grows.
+            </p>
+
+            <div class="card-bottom">
+              <span class="tag">ESTIMATORS · INFERENCE</span>
+
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
+              </span>
             </div>
 
           </a>

@@ -4502,3 +4502,95 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .hmw4-interpretation strong {
   color: #d3fff2;
 }
+
+/* =====================================================
+   HOMEWORK 4.1 (internal: hmw5) — CODE AND DATA INPUT
+   ===================================================== */
+
+/* Code blocks */
+
+.hmw5-code {
+  margin: 18px 0 22px;
+  padding: 18px 20px;
+
+  background: #0b1a27;
+  border: 1px solid #29454e;
+  border-radius: 10px;
+
+  color: #c9e6e1;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.hmw5-code code {
+  font: inherit;
+}
+
+/* The three-line core, highlighted */
+
+.hmw5-code-core {
+  border-color: #347663;
+  border-left: 3px solid var(--accent);
+  background: #0d2421;
+  color: #b0f9e9;
+  font-size: 14px;
+}
+
+.hmw5-inline-code {
+  padding: 2px 6px;
+
+  background: #0b1a27;
+  border: 1px solid #29454e;
+  border-radius: 5px;
+
+  color: #aef0da;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+}
+
+/* Data input */
+
+.hmw5-field-wide {
+  grid-column: 1 / -1;
+}
+
+.hmw5-textarea {
+  min-height: 84px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+
+  .hmw5-code {
+    padding: 14px;
+    font-size: 12px;
+  }
+
+  .hmw5-code-core {
+    font-size: 12px;
+  }
+
+}
+
+
+/* =====================================================
+   HOMEWORK 4.2 (internal: hmw6) — SMALL ADJUSTMENTS
+   ===================================================== */
+
+/* Metric tiles beside a chart: two per row */
+
+.hmw6-metrics-compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+/* Tables with few columns do not need the wide minimum width */
+
+.hmw4-table.hmw6-table-narrow {
+  min-width: 360px;
+}
