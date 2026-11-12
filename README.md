@@ -22,6 +22,8 @@ and security analysis.
 | Homework 3 | Stochastic Processes, LLN & CLT | Completed |
 | Homework 4.1 | Welford's Recurrence Formulas | Completed |
 | Homework 4.2 | Sampling Mean and Variance | Completed |
+| Homework 5.1 | Riemann and Lebesgue Integration | Completed |
+| Homework 5.2 | Numerical Computation of the Normal CDF | Completed |
 
 ### Homework 1.1 — Elliptic Curve Cryptography
 
@@ -400,6 +402,51 @@ Unbiasedness, the 1/√n decrease of the variability, why the
 variance is harder to estimate than the mean, and why these
 results are the basis of inferential statistics.
 
+### Homework 5.1 — Riemann and Lebesgue Integration
+
+**Route:** `#/hmw7`
+
+Two numerical integration methods inspired by the two definitions
+of the integral, applied to sin x on [0, π], x² and |x − ½| on
+[0, 1], two step functions, 1/√x on (0, 1] and sin(x)/x on [0, π]:
+
+- Riemann-type: left, midpoint and right sums and the trapezoidal
+  rule on N equal subintervals of the domain.
+- Lebesgue-type: M equal layers of the range; for each level the
+  preimage `{f > y_k}` is found by bisection on the monotone pieces
+  of f, and lower, upper and mean Lebesgue sums are formed (the
+  layer-cake formula `∫ f = ∫ μ(f > t) dt`). For the unbounded 1/√x
+  the levels stop at `T = M^(2/3)`.
+
+The page contains the theory (Darboux sums, measure, simple
+functions, Lebesgue's criterion, monotone convergence), a lab that
+draws the two partitions side by side, a convergence and efficiency
+study (error against N on log-log axes, observed orders, evaluations
+of f needed for 10⁻⁶), and the pathological functions of Dirichlet
+and Thomae, with tags stored exactly as `r + s·√2` and a demonstration
+that every double is a rational number.
+
+### Homework 5.2 — Numerical Computation of the Normal CDF
+
+**Route:** `#/hmw8`
+
+Why Φ is not an elementary function (Liouville's theorem in
+Rosenlicht's form, with the proof for `e^(−x²/2)`), how
+`Φ(z) = ½[1 + erf(z/√2)]` represents it exactly, and why numerical
+methods are still needed. Nine methods are compared: trapezoidal
+and Simpson rules, the Taylor series of erf from the course notes,
+Marsaglia's positive series, Laplace's continued fraction,
+Abramowitz–Stegun 7.1.26, the Numerical Recipes erfc of Homework 3,
+Hart's algorithm 5666 (as published by West) and our method, the
+positive series for |z| < 2 and the continued fraction beyond.
+
+References: the 15-decimal table of the Wikipedia article on the
+68–95–99.7 rule, the NIST/SEMATECH e-Handbook table (5 decimals,
+410 entries, one of which is off by one in the last digit), and a
+grid of values computed with mpmath at 50 digits. Our method agrees
+with all 16 Wikipedia values and keeps a relative error below
+10⁻¹⁴ from z = 0 to z = −37.
+
 ---
 
 ## Statistical Datasets
@@ -462,7 +509,9 @@ statistics-lab/
     |   |-- hmw3.js
     |   |-- hmw4.js
     |   |-- hmw5.js
-    |   `-- hmw6.js
+    |   |-- hmw6.js
+    |   |-- hmw7.js
+    |   `-- hmw8.js
     |
     `-- homeworks/
         |
@@ -510,21 +559,44 @@ statistics-lab/
         |   |-- stability-ui.js
         |   `-- conclusion.js
         |
-        `-- hmw6/
-            |-- score-distributions.js
-            |-- experiment.js
-            |-- distribution-ui.js
-            |-- sampling-ui.js
-            |-- variability-ui.js
+        |-- hmw6/
+        |   |-- score-distributions.js
+        |   |-- experiment.js
+        |   |-- distribution-ui.js
+        |   |-- sampling-ui.js
+        |   |-- variability-ui.js
+        |   `-- conclusion.js
+        |
+        |-- hmw7/
+        |   |-- functions.js
+        |   |-- riemann.js
+        |   |-- lebesgue.js
+        |   |-- convergence.js
+        |   |-- pathological.js
+        |   |-- slices-chart.js
+        |   |-- lab-ui.js
+        |   |-- convergence-ui.js
+        |   |-- pathological-ui.js
+        |   `-- conclusion.js
+        |
+        `-- hmw8/
+            |-- normal-cdf.js
+            |-- reference.js
+            |-- calculator-ui.js
+            |-- accuracy-ui.js
+            |-- efficiency-ui.js
             `-- conclusion.js
 ```
 
 **Note:** Internal folder names follow the order in which the
 interactive modules were created, not the course numbering:
 `hmw3` is displayed as Homework 2, `hmw4` as Homework 3, and
-`hmw5` and `hmw6` as Homework 4.1 and 4.2. Homework 4.1 and 4.2
-reuse the random generator and the SVG charts of `hmw4`, and
-Homework 4.2 uses the Welford module of `hmw5`.
+`hmw5` and `hmw6` as Homework 4.1 and 4.2, `hmw7` and `hmw8` as
+Homework 5.1 and 5.2. Homework 4.1 and 4.2 reuse the random
+generator and the SVG charts of `hmw4`, and Homework 4.2 uses the
+Welford module of `hmw5`. Homework 5.1 and 5.2 reuse the SVG charts
+of `hmw4`; Homework 5.2 uses the trapezoidal and Simpson rules of
+`hmw7`.
 ---
 
 ## Architecture
@@ -539,6 +611,8 @@ using vanilla JavaScript and ES Modules.
 - `js/homeworks/hmw4/` contains the stochastic-process simulations, statistics and SVG charts.
 - `js/homeworks/hmw5/` contains Welford's recurrence and the numerical-stability experiment.
 - `js/homeworks/hmw6/` contains the score distributions and the sampling experiment.
+- `js/homeworks/hmw7/` contains the Riemann and Lebesgue integration methods and the pathological functions.
+- `js/homeworks/hmw8/` contains the methods for the normal CDF and their reference values.
 - `js/app.js` manages hash-based navigation and initialization.
 - `css/styles.css` provides shared styling and responsive layouts.
 - `data/corpus/` stores the statistical reference and evaluation texts.
