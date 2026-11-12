@@ -27,7 +27,7 @@ export function renderHome() {
           <h2 id="hw-title">Homework collection</h2>
         </div>
 
-        <span class="section-counter">02 UNITS · 03 EXERCISES</span>
+        <span class="section-counter">02 UNITS · 04 EXERCISES</span>
       </div>
 
       <!-- HOMEWORK 1 -->
@@ -194,8 +194,89 @@ export function renderHome() {
 
       </section>
 
-    </section>
+      <!-- ==========================================
+          HOMEWORK 3 (internal route /hmw4)
+          ========================================== -->
 
+      <section class="homework-unit" aria-labelledby="homework-3-title">
+
+        <div class="section-heading">
+
+          <h3 id="homework-3-title">
+            Homework 3
+          </h3>
+
+          <span class="section-counter">
+            1/1 COMPLETED
+          </span>
+
+        </div>
+
+
+        <div class="homework-grid">
+
+          <!-- Homework 3: Stochastic Processes, LLN & CLT -->
+          <a class="homework-card" href="#/hmw4">
+
+            <div class="card-top">
+
+              <span class="card-code">
+                HMW / 03
+              </span>
+
+              <span class="card-arrow" aria-hidden="true">
+                ↗
+              </span>
+
+            </div>
+
+
+            <!-- From increments to the normal law -->
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+
+              <span>X<sub>i</sub></span>
+              <i>→</i>
+              <span>S<sub>n</sub></span>
+              <i>→</i>
+              <span>N(0,1)</span>
+
+            </div>
+
+
+            <h3>
+              Stochastic Processes,<br />
+              LLN &amp; CLT
+            </h3>
+
+            <p>
+              Simulate n systems and m attackers as random walks,
+              compare Bernoulli and Rademacher scores, and watch
+              the Law of Large Numbers and the Central Limit
+              Theorem emerge.
+            </p>
+
+
+            <div class="card-bottom">
+
+              <span class="tag">
+                RANDOM WALKS · LLN · CLT
+              </span>
+
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
+              </span>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+    </section>
 
     <section class="section approach-section" aria-labelledby="approach-title">
       <div class="section-heading"><div><div class="eyebrow small">HOW IT WORKS</div><h2 id="approach-title">How the Lab is organized</h2><p>Each Homeworks unit is structured like this:</p></div></div>

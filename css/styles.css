@@ -1562,7 +1562,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* Homework 2 at the same level as Homework 1 */
 
-.nav-subitems > .nav-homework[data-route="/hmw3"] {
+.nav-subitems > .nav-homework[data-route="/hmw3"],
+.nav-subitems > .nav-homework[data-route="/hmw4"] {
   width: calc(100% - 12px);
   min-height: 60px;
 
@@ -1577,7 +1578,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* Match the typography of the Homework 1 heading */
 
-.nav-subitems > .nav-homework[data-route="/hmw3"] .nav-link-text {
+.nav-subitems > .nav-homework[data-route="/hmw3"] .nav-link-text,
+.nav-subitems > .nav-homework[data-route="/hmw4"] .nav-link-text {
   font-size: 13px;
   font-weight: 620;
   line-height: 1.28;
@@ -1585,7 +1587,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* Keep the secondary description compact */
 
-.nav-subitems > .nav-homework[data-route="/hmw3"] .nav-link-text small {
+.nav-subitems > .nav-homework[data-route="/hmw3"] .nav-link-text small,
+.nav-subitems > .nav-homework[data-route="/hmw4"] .nav-link-text small {
   font-size: 10px;
   font-weight: 450;
   margin-top: 5px;
@@ -3972,4 +3975,530 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
     transition: none;
   }
 
+}
+/* =====================================================
+   HOMEWORK 3 (internal: hmw4) — INTERACTIVE LABS
+   Stochastic processes, LLN & CLT.
+   Shared by all hmw4 sections: controls, quantity
+   selector, chart container, legend, status, metrics.
+   ===================================================== */
+
+/* -----------------------------------------------------
+   CONTROLS
+   ----------------------------------------------------- */
+
+.hmw4-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px 18px;
+  align-items: end;
+
+  margin: 26px 0 20px;
+  padding: 20px;
+
+  background: #0c1e2b;
+  border: 1px solid #29454e;
+  border-radius: 11px;
+}
+
+.hmw4-field {
+  min-width: 0;
+}
+
+.hmw4-field-action .button {
+  width: 100%;
+  min-height: 44px;
+}
+
+.hmw4-label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #d2e7e8;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.3px;
+}
+
+.hmw4-input,
+.hmw4-select {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+
+  background: #0b1a27;
+  border: 1px solid #355464;
+  border-radius: 9px;
+
+  color: #aef0da;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 15px;
+
+  transition: border-color .2s, background .2s;
+}
+
+/* Custom arrow for the select menus */
+
+.hmw4-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2367e2c5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+}
+
+.hmw4-select option {
+  background: #0b1a27;
+  color: #d2e7e8;
+}
+
+.hmw4-input:hover,
+.hmw4-select:hover {
+  border-color: #4d7584;
+}
+
+.hmw4-input:focus,
+.hmw4-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: #0e2230;
+}
+
+.hmw4-input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* -----------------------------------------------------
+   QUANTITY SELECTOR (segmented buttons)
+   ----------------------------------------------------- */
+
+.hmw4-segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin: 0 0 16px;
+}
+
+.hmw4-segment {
+  position: relative;
+  flex: 1 1 120px;
+}
+
+/* The radio stays in the page for keyboard and screen readers,
+   but is visually replaced by the styled span. */
+
+.hmw4-segment input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.hmw4-segment span {
+  display: block;
+  padding: 10px 12px;
+
+  background: #0c1e2b;
+  border: 1px solid #355464;
+  border-radius: 9px;
+
+  color: #a9c3cc;
+  font-size: 13px;
+  font-weight: 650;
+  text-align: center;
+
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.hmw4-segment:hover span {
+  border-color: #4d7584;
+  color: #d2e7e8;
+}
+
+.hmw4-segment input:checked + span {
+  background: #10332e;
+  border-color: #347663;
+  color: #94efd0;
+}
+
+.hmw4-segment input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* -----------------------------------------------------
+   CHART, LEGEND, STATUS
+   ----------------------------------------------------- */
+
+.hmw4-chart {
+  width: 100%;
+  min-height: 200px;
+}
+
+.hmw4-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+
+  margin: 14px 2px 0;
+
+  color: #9ebbc4;
+  font-size: 12px;
+}
+
+.hmw4-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hmw4-legend i {
+  display: inline-block;
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.hmw4-status {
+  margin: 16px 0 0;
+  padding: 11px 15px;
+
+  background: #112d36;
+  border: 1px solid #32515c;
+  border-radius: 8px;
+
+  color: #b7dce0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.hmw4-status:empty {
+  display: none;
+}
+
+/* -----------------------------------------------------
+   METRIC TILES
+   ----------------------------------------------------- */
+
+.hmw4-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.hmw4-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-width: 0;
+  min-height: 92px;
+  padding: 16px;
+
+  background: #102532;
+  border: 1px solid #355464;
+  border-radius: 10px;
+}
+
+.hmw4-metric span {
+  margin-bottom: 12px;
+
+  color: #9ebbc4;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  line-height: 1.5;
+}
+
+.hmw4-metric strong {
+  color: #e0f2ed;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 20px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+/* -----------------------------------------------------
+   INTERPRETATION BOX
+   ----------------------------------------------------- */
+
+.hmw4-interpretation {
+  margin-top: 20px;
+  padding: 18px 20px;
+
+  background: #10332e;
+  border: 1px solid #2f6658;
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+}
+
+.hmw4-interpretation:empty {
+  display: none;
+}
+
+.hmw4-interpretation p {
+  margin: 0;
+  color: #c3e6dc;
+}
+
+/* -----------------------------------------------------
+   RESPONSIVE
+   ----------------------------------------------------- */
+
+@media (max-width: 650px) {
+
+  .hmw4-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+    padding: 16px;
+  }
+
+  .hmw4-field-action {
+    grid-column: 1 / -1;
+  }
+
+  .hmw4-segment {
+    flex-basis: calc(50% - 4px);
+  }
+
+  .hmw4-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hmw4-metric {
+    min-height: 84px;
+    padding: 13px;
+  }
+
+  .hmw4-metric strong {
+    font-size: 16px;
+  }
+
+  /* An odd last tile takes the whole row */
+  .hmw4-metric:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .hmw4-controls,
+  .hmw4-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .hmw4-metric:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+}
+/* -----------------------------------------------------
+   HOMEWORK 3 (hmw4) — HISTOGRAM GRID AND TABLES
+   Section 08 and following.
+   ----------------------------------------------------- */
+
+/* Smaller secondary selector (e.g. common / own scale) */
+
+.hmw4-segmented-small .hmw4-segment {
+  flex: 0 1 auto;
+}
+
+.hmw4-segmented-small .hmw4-segment span {
+  padding: 7px 14px;
+  font-size: 12px;
+}
+
+/* Grid of small histograms, one card per n */
+
+.hmw4-hist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+
+  margin-top: 4px;
+}
+
+.hmw4-hist-card {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 10px 12px;
+
+  background: #0c1e2b;
+  border: 1px solid #29454e;
+  border-radius: 10px;
+}
+
+.hmw4-hist-card figcaption {
+  margin: 2px 4px 8px;
+
+  color: #c4ebe6;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hmw4-hist-chart {
+  width: 100%;
+}
+
+/* Two classes: more specific than the generic ".panel p" rule */
+
+.hmw4-hist-card .hmw4-hist-stats {
+  margin: 10px 4px 0;
+
+  color: #c3dce1;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.hmw4-hist-card .hmw4-hist-stats span {
+  color: #f8c879;
+}
+
+/* Data tables */
+
+.hmw4-table-wrap {
+  width: 100%;
+  margin-top: 14px;
+
+  border: 1px solid #355464;
+  border-radius: 10px;
+
+  overflow-x: auto;
+}
+
+.hmw4-table {
+  width: 100%;
+  min-width: 680px;
+
+  border-collapse: collapse;
+
+  background: #0c1e2b;
+  color: #c3dce1;
+
+  font-size: 12px;
+}
+
+.hmw4-table caption {
+  padding: 13px 16px;
+
+  background: #102532;
+
+  color: #93aeb9;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.hmw4-table th,
+.hmw4-table td {
+  padding: 11px 14px;
+
+  border-bottom: 1px solid #29454e;
+
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hmw4-table thead th {
+  background: #193745;
+
+  color: #c4ebe6;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hmw4-table tbody th {
+  color: #a7ead8;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.hmw4-table td {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.hmw4-table tbody tr:last-child th,
+.hmw4-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.hmw4-table th:first-child,
+.hmw4-table td:first-child {
+  text-align: left;
+}
+
+/* Section sub-headings inside hmw4 labs */
+
+.hmw4-lab h3 {
+  margin: 30px 0 4px;
+
+  color: #d7f5ee;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+@media (max-width: 650px) {
+
+  .hmw4-hist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .hmw4-hist-card {
+    padding: 8px 6px 10px;
+  }
+
+  .hmw4-segmented-small .hmw4-segment {
+    flex: 1 1 0;
+  }
+
+}
+/* -----------------------------------------------------
+   HOMEWORK 3 (hmw4) — PAIRED CHARTS AND SELECTED ROWS
+   Section 10 and following.
+   ----------------------------------------------------- */
+
+/* Two charts side by side (e.g. histogram and CDF) */
+
+.hmw4-chart-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Table row matching the n shown in the charts */
+
+.hmw4-table tbody tr.hmw4-row-selected th,
+.hmw4-table tbody tr.hmw4-row-selected td {
+  background: #10332e;
+  color: #94efd0;
+}
+
+@media (max-width: 760px) {
+
+  .hmw4-chart-pair {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* Several paragraphs inside one interpretation box */
+
+.hmw4-interpretation p + p {
+  margin-top: 12px;
+}
+
+.hmw4-interpretation strong {
+  color: #d3fff2;
 }

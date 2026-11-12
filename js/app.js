@@ -2,11 +2,17 @@ import { renderHome } from './pages/home.js';
 import { renderHmw1 } from './pages/hmw1.js';
 import { renderHmw2 } from './pages/hmw2.js';
 import { renderHmw3 } from './pages/hmw3.js';
+import { renderHmw4 } from './pages/hmw4.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
 import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 import { initHmw2Wallet } from './homeworks/hmw2/wallet-ui.js';
 import { initHmw2Statistics } from './homeworks/hmw2/statistics-ui.js';
 import { initHmw3Simulator } from './homeworks/hmw3/simulator-ui.js';
+import { initHmw4Trajectories } from './homeworks/hmw4/trajectories-ui.js';
+import { initHmw4Distributions } from './homeworks/hmw4/distributions-ui.js';
+import { initHmw4Lln } from './homeworks/hmw4/lln-ui.js';
+import { initHmw4Clt } from './homeworks/hmw4/clt-ui.js';
+import { initHmw4Aggregate } from './homeworks/hmw4/aggregate-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -33,6 +39,12 @@ const routes = {
     label: 'Homework 2',
     title: 'Homework 2 — Encryption & Cryptanalysis',
     render: renderHmw3
+  },
+    // Homework 3 uses the internal name hmw4 (hmw3 hosts Homework 2).
+  '/hmw4': {
+    label: 'Homework 3',
+    title: 'Homework 3 — Stochastic Processes, LLN & CLT',
+    render: renderHmw4
   }
 };
 
@@ -97,6 +109,23 @@ function navigate() {
 
     // Homework 2 — Caesar Cipher simulator.
     disposeHomework = initHmw3Simulator();
+
+  } else if (path === '/hmw4') {
+
+    // Homework 3 — Sample trajectories (section 07).
+    const cleanupTrajectories = initHmw4Trajectories();
+    const cleanupDistributions = initHmw4Distributions();
+    const cleanupLln = initHmw4Lln();
+    const cleanupClt = initHmw4Clt();
+    const cleanupAggregate = initHmw4Aggregate();
+
+    disposeHomework = () => {
+      cleanupTrajectories();
+      cleanupDistributions();
+      cleanupLln();
+      cleanupClt();
+      cleanupAggregate();
+    };
 
   } else {
     

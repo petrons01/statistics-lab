@@ -19,6 +19,7 @@ and security analysis.
 | Homework 1.1 | Elliptic Curve Cryptography — Private to Public Key | Completed |
 | Homework 1.2 | Ethereum Wallet — Key Derivation and Hashing | Completed |
 | Homework 2 | Encryption, Decryption & Cryptanalysis | Completed |
+| Homework 3 | Stochastic Processes, LLN & CLT | Completed |
 
 ### Homework 1.1 — Elliptic Curve Cryptography
 
@@ -253,6 +254,81 @@ encryption in terms of:
 - Statistical versus exhaustive-search attacks.
 - Security assumptions and implementation limitations.
 
+### Homework 3 — Stochastic Processes, LLN & CLT
+
+**Route:** `#/hmw4`
+
+A simulation study of n systems and m attackers. Each attacker
+attacks the n systems in sequence and accumulates a penetration
+score with independent and identically distributed increments,
+producing a random walk:
+
+`S_n = X_1 + X_2 + ... + X_n`
+
+Two score models are compared:
+
+- **Bernoulli:** `X ∈ {0, 1}`, `P(X = 1) = p`, mean `p`, variance `p(1 − p)`.
+- **Rademacher:** `X ∈ {−1, +1}` with probability 1/2 each,
+  the symmetric zero-mean case, mean `0`, variance `1`.
+
+The laboratory studies three quantities as n grows — the total
+score `S_n`, the average score `S_n / n` and the normalized score
+`S_n / √n` — and verifies the Law of Large Numbers and the
+Central Limit Theorem against the theory.
+
+#### 1. Theory
+
+Sections 01–06 introduce the model, derive `E[S_n] = nμ` and
+`Var(S_n) = nσ²`, compare the three normalizations, state the two
+limit theorems and define the aggregate penetration score.
+They also explain why, for the Bernoulli model, `S_n / √n` does not
+converge to N(0, 1) and only the centered and standardized score does.
+
+#### 2. Sample Trajectories
+
+Paths of a few attackers under four normalizations, with the
+theoretical mean and the mean ± 2 standard deviations band.
+
+#### 3. Distributions of the Three Quantities
+
+Histograms of the three quantities for n = 10, 30, 100, 300, 1000
+over m independent attackers, on a common or individual scale,
+with the normal approximation and a table comparing empirical
+variance (denominator m), sample variance (denominator m − 1)
+and theoretical variance.
+
+#### 4. Law of Large Numbers
+
+Empirical probability `P(|S_n / n − μ| > ε)` for n up to 10,000
+on a logarithmic axis, compared with Chebyshev's bound and the
+normal approximation, together with the empirical quantiles
+of the average score.
+
+#### 5. Central Limit Theorem
+
+Histogram and empirical CDF of the normalized score against
+N(0, 1), and the Kolmogorov–Smirnov distance as a function of n,
+with reference levels for the discreteness of `S_n` and for the
+sampling noise of m attackers.
+
+#### 6. System Size, Attackers and Aggregate Score
+
+The aggregate score `T = S_n^(1) + ... + S_n^(m)` for nine
+combinations of n and m, showing that T depends only on the
+product mn and that n and m play different roles for single
+attackers: n governs each process, m governs how accurately
+the simulation reveals it.
+
+#### 7. Conclusions
+
+A summary of the results obtained on the page with the default
+settings, and the limits of the simulation: sampling error,
+discreteness, dependent snapshots and the pseudo-random generator.
+
+All simulations use Mulberry32, a seeded pseudo-random generator
+chosen for reproducibility. It is suitable for simulation but
+is not cryptographically secure.
+
 ---
 
 ## Statistical Datasets
@@ -312,7 +388,8 @@ statistics-lab/
     |   |-- home.js
     |   |-- hmw1.js
     |   |-- hmw2.js
-    |   `-- hmw3.js
+    |   |-- hmw3.js
+    |   `-- hmw4.js
     |
     `-- homeworks/
         |
@@ -329,22 +406,35 @@ statistics-lab/
         |   |-- statistics-ui.js
         |   `-- conclusion.js
         |
-        `-- hmw3/
-            |-- caesar.js
-            |-- caesar-attack.js
-            |-- ecc-encryption.js
-            |-- ecc-attack.js
-            |-- ecc-attack-ui.js
-            |-- experiments.js
-            |-- experiments-ui.js
-            |-- statistics-ui.js
-            |-- simulator-ui.js
+        |-- hmw3/
+        |   |-- caesar.js
+        |   |-- caesar-attack.js
+        |   |-- ecc-encryption.js
+        |   |-- ecc-attack.js
+        |   |-- ecc-attack-ui.js
+        |   |-- experiments.js
+        |   |-- experiments-ui.js
+        |   |-- statistics-ui.js
+        |   |-- simulator-ui.js
+        |   `-- conclusion.js
+        |
+        `-- hmw4/
+            |-- random.js
+            |-- models.js
+            |-- simulation.js
+            |-- statistics.js
+            |-- chart.js
+            |-- trajectories-ui.js
+            |-- distributions-ui.js
+            |-- lln-ui.js
+            |-- clt-ui.js
+            |-- aggregate-ui.js
             `-- conclusion.js
 ```
 
-**Note:** The internal folder `hmw3` corresponds to the
-third interactive module, displayed as Homework 2.
-
+**Note:** Internal folder names follow the order in which the
+interactive modules were created, not the course numbering:
+`hmw3` is displayed as Homework 2 and `hmw4` as Homework 3.
 ---
 
 ## Architecture
@@ -356,6 +446,7 @@ using vanilla JavaScript and ES Modules.
 - `js/homeworks/hmw1/` contains the toy ECC laboratory.
 - `js/homeworks/hmw2/` contains the Ethereum wallet laboratory.
 - `js/homeworks/hmw3/` contains encryption and cryptanalysis modules.
+- `js/homeworks/hmw4/` contains the stochastic-process simulations, statistics and SVG charts.
 - `js/app.js` manages hash-based navigation and initialization.
 - `css/styles.css` provides shared styling and responsive layouts.
 - `data/corpus/` stores the statistical reference and evaluation texts.
