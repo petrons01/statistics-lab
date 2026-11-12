@@ -3,6 +3,8 @@ import { renderHmw1 } from './pages/hmw1.js';
 import { renderHmw2 } from './pages/hmw2.js';
 import { renderHmw3 } from './pages/hmw3.js';
 import { renderHmw4 } from './pages/hmw4.js';
+import { renderHmw5 } from './pages/hmw5.js';
+import { renderHmw6 } from './pages/hmw6.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
 import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 import { initHmw2Wallet } from './homeworks/hmw2/wallet-ui.js';
@@ -13,6 +15,11 @@ import { initHmw4Distributions } from './homeworks/hmw4/distributions-ui.js';
 import { initHmw4Lln } from './homeworks/hmw4/lln-ui.js';
 import { initHmw4Clt } from './homeworks/hmw4/clt-ui.js';
 import { initHmw4Aggregate } from './homeworks/hmw4/aggregate-ui.js';
+import { initHmw5Lab } from './homeworks/hmw5/welford-ui.js';
+import { initHmw5Stability } from './homeworks/hmw5/stability-ui.js';
+import { initHmw6Distribution } from './homeworks/hmw6/distribution-ui.js';
+import { initHmw6Sampling } from './homeworks/hmw6/sampling-ui.js';
+import { initHmw6Variability } from './homeworks/hmw6/variability-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -45,6 +52,20 @@ const routes = {
     label: 'Homework 3',
     title: 'Homework 3 — Stochastic Processes, LLN & CLT',
     render: renderHmw4
+  },
+
+  // Homework 4 has two exercises, like Homework 1:
+  // 4.1 uses the internal name hmw5, 4.2 uses hmw6.
+  '/hmw5': {
+    label: 'Homework 4.1',
+    title: "Homework 4.1 — Welford's Recurrence Formulas",
+    render: renderHmw5
+  },
+
+  '/hmw6': {
+    label: 'Homework 4.2',
+    title: 'Homework 4.2 — Sampling Mean and Variance',
+    render: renderHmw6
   }
 };
 
@@ -112,7 +133,7 @@ function navigate() {
 
   } else if (path === '/hmw4') {
 
-    // Homework 3 — Sample trajectories (section 07).
+    // Homework 3 — interactive sections 07 to 11.
     const cleanupTrajectories = initHmw4Trajectories();
     const cleanupDistributions = initHmw4Distributions();
     const cleanupLln = initHmw4Lln();
@@ -125,6 +146,30 @@ function navigate() {
       cleanupLln();
       cleanupClt();
       cleanupAggregate();
+    };
+
+  } else if (path === '/hmw5') {
+
+    // Homework 4.1 — step-by-step laboratory (06) and stability (07).
+    const cleanupLab = initHmw5Lab();
+    const cleanupStability = initHmw5Stability();
+
+    disposeHomework = () => {
+      cleanupLab();
+      cleanupStability();
+    };
+
+  } else if (path === '/hmw6') {
+
+    // Homework 4.2 — distribution (02), experiment (04), variability (05).
+    const cleanupDistribution = initHmw6Distribution();
+    const cleanupSampling = initHmw6Sampling();
+    const cleanupVariability = initHmw6Variability();
+
+    disposeHomework = () => {
+      cleanupDistribution();
+      cleanupSampling();
+      cleanupVariability();
     };
 
   } else {

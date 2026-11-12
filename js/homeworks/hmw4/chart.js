@@ -153,6 +153,9 @@ let clipCounter = 0;
  *   labels. Together with xTicks this allows a logarithmic axis:
  *   pass x = log10(n), xTicks = [1, 2, 3, 4] and
  *   xFormat = t => formatTick(10 ** t).
+ * @param {number[]} [options.yTicks]  Custom y tick positions.
+ * @param {(value: number) => string} [options.yFormat]  Custom y tick
+ *   labels (same idea, for a logarithmic y axis).
  * @param {{ points: [number, number][], color?: string, *           width?: number, opacity?: number, dash?: string }[]} [options.lines]
  * @param {{ points: [number, number, number][], color?: string,
  *           opacity?: number }} [options.band]  Points [x, low, high].
@@ -168,6 +171,8 @@ export function renderLineChart({
   yDomain,
   xTicks: customXTicks = null,
   xFormat = formatTick,
+  yTicks: customYTicks = null,
+  yFormat = formatTick,
   lines = [],
   band = null
 }) {
@@ -194,7 +199,9 @@ export function renderLineChart({
   const xTicks = customXTicks
     ? customXTicks.filter(t => t >= xDomain[0] && t <= xDomain[1])
     : niceTicks(xDomain[0], xDomain[1], compact ? 4 : 7);
-  const yTicks = niceTicks(yDomain[0], yDomain[1], 5);
+  const yTicks = customYTicks
+    ? customYTicks.filter(t => t >= yDomain[0] && t <= yDomain[1])
+    : niceTicks(yDomain[0], yDomain[1], 5);
 
   const coordinate = value => value.toFixed(1);
 
@@ -207,7 +214,7 @@ export function renderLineChart({
             stroke="${CHART_COLORS.grid}" stroke-width="1" />
       <text x="${margin.left - 8}" y="${coordinate(y(t))}"
             fill="${CHART_COLORS.text}" font-size="${fontSize}"
-            text-anchor="end" dominant-baseline="middle">${formatTick(t)}</text>`),
+            text-anchor="end" dominant-baseline="middle">${yFormat(t)}</text>`),
     ...xTicks.map(t => `
       <line x1="${coordinate(x(t))}" x2="${coordinate(x(t))}"
             y1="${margin.top}" y2="${margin.top + plotH}"

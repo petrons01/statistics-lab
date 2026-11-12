@@ -20,6 +20,8 @@ and security analysis.
 | Homework 1.2 | Ethereum Wallet — Key Derivation and Hashing | Completed |
 | Homework 2 | Encryption, Decryption & Cryptanalysis | Completed |
 | Homework 3 | Stochastic Processes, LLN & CLT | Completed |
+| Homework 4.1 | Welford's Recurrence Formulas | Completed |
+| Homework 4.2 | Sampling Mean and Variance | Completed |
 
 ### Homework 1.1 — Elliptic Curve Cryptography
 
@@ -329,6 +331,75 @@ All simulations use Mulberry32, a seeded pseudo-random generator
 chosen for reproducibility. It is suitable for simulation but
 is not cryptographically secure.
 
+### Homework 4.1 — Welford's Recurrence Formulas
+
+**Route:** `#/hmw5`
+
+Derivation and implementation of the one-pass recurrences for
+the mean, the sum of squared deviations and the variance:
+
+- Knuth: `M_k = M_(k−1) + (x_k − M_(k−1)) / k`
+- Welford: `SS_k = SS_(k−1) + (x_k − M_(k−1)) (x_k − M_k)`
+- Sample variance: `s²_k = SS_k / (k − 1)`, also in the direct form
+  `s²_k = (k − 2)/(k − 1) · s²_(k−1) + (x_k − M_(k−1))² / k`
+
+The core of the implementation is three lines:
+
+```javascript
+const delta = x - mean;
+mean += delta / k;
+ss += delta * (x - mean);
+```
+
+The page contains the step-by-step derivation, the code, a
+laboratory that shows every step of the recurrences on user data
+and checks the result against the two-pass formula, and a
+numerical-stability experiment: on data shifted by a large offset
+the naive formula `Σx² − (Σx)²/n` loses all its digits and can
+return a negative variance, while Welford's recurrence stays
+accurate.
+
+### Homework 4.2 — Sampling Mean and Variance
+
+**Route:** `#/hmw6`
+
+An extension of Homework 3 in which every penetration attempt
+receives a score from 0 to 10, drawn from a fixed discrete
+distribution (default: a skewed difficulty profile; binomial,
+uniform and heavy-tailed alternatives are available). Each of m
+hackers attempts n systems and computes the sampling mean and the
+sampling variance of the n scores with the Welford code of
+Homework 4.1.
+
+#### 1. Score Distribution
+
+Probabilities, exact mean, variance, skewness and excess kurtosis
+of each distribution, and inverse-CDF sampling.
+
+#### 2. Sampling Theory
+
+`E[x̄] = μ`, `Var(x̄) = σ²/n`, `E[s²] = σ²` (with the derivation of
+the n − 1), `Var(s²) = σ⁴ (2/(n − 1) + κ/n)`, and the standard
+errors of averages over m hackers.
+
+#### 3. Experiment
+
+Averages of the sampling means and variances over the m hackers,
+compared with μ and σ² for n from 2 to 1000, with z-scores and the
+biased estimator `SS/n` for comparison.
+
+#### 4. Variability as n Grows
+
+Standard deviation of the sampling means and variances across
+hackers against n on log-log axes, compared with the theory, and
+histograms of the two sampling distributions.
+
+#### 5. Conclusions
+
+Unbiasedness, the 1/√n decrease of the variability, why the
+variance is harder to estimate than the mean, and why these
+results are the basis of inferential statistics.
+
 ---
 
 ## Statistical Datasets
@@ -389,7 +460,9 @@ statistics-lab/
     |   |-- hmw1.js
     |   |-- hmw2.js
     |   |-- hmw3.js
-    |   `-- hmw4.js
+    |   |-- hmw4.js
+    |   |-- hmw5.js
+    |   `-- hmw6.js
     |
     `-- homeworks/
         |
@@ -418,23 +491,40 @@ statistics-lab/
         |   |-- simulator-ui.js
         |   `-- conclusion.js
         |
-        `-- hmw4/
-            |-- random.js
-            |-- models.js
-            |-- simulation.js
-            |-- statistics.js
-            |-- chart.js
-            |-- trajectories-ui.js
-            |-- distributions-ui.js
-            |-- lln-ui.js
-            |-- clt-ui.js
-            |-- aggregate-ui.js
+        |-- hmw4/
+        |   |-- random.js
+        |   |-- models.js
+        |   |-- simulation.js
+        |   |-- statistics.js
+        |   |-- chart.js
+        |   |-- trajectories-ui.js
+        |   |-- distributions-ui.js
+        |   |-- lln-ui.js
+        |   |-- clt-ui.js
+        |   |-- aggregate-ui.js
+        |   `-- conclusion.js
+        |
+        |-- hmw5/
+        |   |-- welford.js
+        |   |-- welford-ui.js
+        |   |-- stability-ui.js
+        |   `-- conclusion.js
+        |
+        `-- hmw6/
+            |-- score-distributions.js
+            |-- experiment.js
+            |-- distribution-ui.js
+            |-- sampling-ui.js
+            |-- variability-ui.js
             `-- conclusion.js
 ```
 
 **Note:** Internal folder names follow the order in which the
 interactive modules were created, not the course numbering:
-`hmw3` is displayed as Homework 2 and `hmw4` as Homework 3.
+`hmw3` is displayed as Homework 2, `hmw4` as Homework 3, and
+`hmw5` and `hmw6` as Homework 4.1 and 4.2. Homework 4.1 and 4.2
+reuse the random generator and the SVG charts of `hmw4`, and
+Homework 4.2 uses the Welford module of `hmw5`.
 ---
 
 ## Architecture
@@ -447,6 +537,8 @@ using vanilla JavaScript and ES Modules.
 - `js/homeworks/hmw2/` contains the Ethereum wallet laboratory.
 - `js/homeworks/hmw3/` contains encryption and cryptanalysis modules.
 - `js/homeworks/hmw4/` contains the stochastic-process simulations, statistics and SVG charts.
+- `js/homeworks/hmw5/` contains Welford's recurrence and the numerical-stability experiment.
+- `js/homeworks/hmw6/` contains the score distributions and the sampling experiment.
 - `js/app.js` manages hash-based navigation and initialization.
 - `css/styles.css` provides shared styling and responsive layouts.
 - `data/corpus/` stores the statistical reference and evaluation texts.
