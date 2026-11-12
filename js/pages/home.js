@@ -27,7 +27,7 @@ export function renderHome() {
           <h2 id="hw-title">Homework collection</h2>
         </div>
 
-        <span class="section-counter">04 UNITS · 06 EXERCISES</span>
+        <span class="section-counter">05 UNITS · 08 EXERCISES</span>
       </div>
 
       <!-- HOMEWORK 1 -->
@@ -360,6 +360,99 @@ export function renderHome() {
 
             <div class="card-bottom">
               <span class="tag">ESTIMATORS · INFERENCE</span>
+
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
+              </span>
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+      <section class="homework-unit" aria-labelledby="homework-5-title">
+
+        <div class="section-heading">
+
+          <h3 id="homework-5-title">
+            Homework 5
+          </h3>
+
+          <span class="section-counter">
+            2/2 COMPLETED
+          </span>
+
+        </div>
+
+
+        <div class="homework-grid">
+
+          <!-- Homework 5.1: Riemann and Lebesgue integration -->
+          <a class="homework-card" href="#/hmw7">
+
+            <div class="card-top">
+              <span class="card-code">HMW / 5.1</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+              <span>DOMAIN</span>
+              <i>↔</i>
+              <span>RANGE</span>
+              <i>→</i>
+              <span>∫ f</span>
+            </div>
+
+            <h3>Riemann and Lebesgue<br />Integration</h3>
+
+            <p>
+              Integrate by slicing the domain or the range, compare
+              accuracy, convergence and cost, and meet the functions
+              only Lebesgue can integrate.
+            </p>
+
+            <div class="card-bottom">
+              <span class="tag">MEASURE · CONVERGENCE</span>
+
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
+              </span>
+            </div>
+
+          </a>
+
+          <!-- Homework 5.2: Numerical computation of the normal CDF -->
+          <a class="homework-card" href="#/hmw8">
+
+            <div class="card-top">
+              <span class="card-code">HMW / 5.2</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+              <span>φ</span>
+              <i>→</i>
+              <span>erf</span>
+              <i>→</i>
+              <span>Φ(z)</span>
+            </div>
+
+            <h3>Numerical Computation<br />of the Normal CDF</h3>
+
+            <p>
+              See why Φ has no elementary formula, then compute it by
+              integration, series, continued fractions and published
+              approximations, against web references.
+            </p>
+
+            <div class="card-bottom">
+              <span class="tag">LIOUVILLE · ERF · ACCURACY</span>
 
               <span class="homework-status homework-status--done">
                 <span aria-hidden="true">✓</span>

@@ -4594,3 +4594,62 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .hmw4-table.hmw6-table-narrow {
   min-width: 360px;
 }
+
+
+/* =====================================================
+   HOMEWORK 5.1 (internal: hmw7) — SMALL ADDITIONS
+   ===================================================== */
+
+/* Titles above the two partition charts */
+
+.hmw4-lab h3.hmw7-chart-title {
+  margin: 26px 0 10px;
+  font-size: 14px;
+}
+
+/* Metric tiles holding long fractions */
+
+.hmw4-metric.hmw7-metric-wrap strong {
+  font-size: 15px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* On phones the function menu takes a whole row */
+
+@media (max-width: 650px) {
+
+  .hmw7-field-function {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* =====================================================
+   HOMEWORK 5.2 (internal: hmw8) — SOURCES AND TABLES
+   ===================================================== */
+
+.hmw8-sources {
+  margin: 12px 0 0;
+  padding-left: 20px;
+
+  color: #b7d0d6;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.hmw8-sources li + li {
+  margin-top: 6px;
+}
+
+.hmw8-sources a {
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+/* Four short columns: no need for the wide minimum width */
+
+.hmw4-table.hmw8-table-wiki {
+  min-width: 480px;
+}

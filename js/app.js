@@ -5,6 +5,8 @@ import { renderHmw3 } from './pages/hmw3.js';
 import { renderHmw4 } from './pages/hmw4.js';
 import { renderHmw5 } from './pages/hmw5.js';
 import { renderHmw6 } from './pages/hmw6.js';
+import { renderHmw7 } from './pages/hmw7.js';
+import { renderHmw8 } from './pages/hmw8.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
 import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 import { initHmw2Wallet } from './homeworks/hmw2/wallet-ui.js';
@@ -20,6 +22,12 @@ import { initHmw5Stability } from './homeworks/hmw5/stability-ui.js';
 import { initHmw6Distribution } from './homeworks/hmw6/distribution-ui.js';
 import { initHmw6Sampling } from './homeworks/hmw6/sampling-ui.js';
 import { initHmw6Variability } from './homeworks/hmw6/variability-ui.js';
+import { initHmw7Lab } from './homeworks/hmw7/lab-ui.js';
+import { initHmw7Convergence } from './homeworks/hmw7/convergence-ui.js';
+import { initHmw7Pathological } from './homeworks/hmw7/pathological-ui.js';
+import { initHmw8Calculator } from './homeworks/hmw8/calculator-ui.js';
+import { initHmw8Accuracy } from './homeworks/hmw8/accuracy-ui.js';
+import { initHmw8Efficiency } from './homeworks/hmw8/efficiency-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -66,6 +74,20 @@ const routes = {
     label: 'Homework 4.2',
     title: 'Homework 4.2 — Sampling Mean and Variance',
     render: renderHmw6
+  },
+
+  // Homework 5 has two exercises as well:
+  // 5.1 uses the internal name hmw7, 5.2 uses hmw8.
+  '/hmw7': {
+    label: 'Homework 5.1',
+    title: 'Homework 5.1 — Riemann and Lebesgue Integration',
+    render: renderHmw7
+  },
+
+  '/hmw8': {
+    label: 'Homework 5.2',
+    title: 'Homework 5.2 — Numerical Computation of the Normal CDF',
+    render: renderHmw8
   }
 };
 
@@ -170,6 +192,32 @@ function navigate() {
       cleanupDistribution();
       cleanupSampling();
       cleanupVariability();
+    };
+
+  } else if (path === '/hmw7') {
+
+    // Homework 5.1 — lab (04), convergence (05), pathological functions (06).
+    const cleanupLab = initHmw7Lab();
+    const cleanupConvergence = initHmw7Convergence();
+    const cleanupPathological = initHmw7Pathological();
+
+    disposeHomework = () => {
+      cleanupLab();
+      cleanupConvergence();
+      cleanupPathological();
+    };
+
+  } else if (path === '/hmw8') {
+
+    // Homework 5.2 — calculator (05), accuracy (06), efficiency (07).
+    const cleanupCalculator = initHmw8Calculator();
+    const cleanupAccuracy = initHmw8Accuracy();
+    const cleanupEfficiency = initHmw8Efficiency();
+
+    disposeHomework = () => {
+      cleanupCalculator();
+      cleanupAccuracy();
+      cleanupEfficiency();
     };
 
   } else {
