@@ -7,6 +7,7 @@ import { renderHmw5 } from './pages/hmw5.js';
 import { renderHmw6 } from './pages/hmw6.js';
 import { renderHmw7 } from './pages/hmw7.js';
 import { renderHmw8 } from './pages/hmw8.js';
+import { renderHmw9 } from './pages/hmw9.js';
 import { initHmw1Simulator } from './homeworks/hmw1/simulator.js';
 import { initHmw1Statistics } from './homeworks/hmw1/statistics-ui.js';
 import { initHmw2Wallet } from './homeworks/hmw2/wallet-ui.js';
@@ -28,6 +29,9 @@ import { initHmw7Pathological } from './homeworks/hmw7/pathological-ui.js';
 import { initHmw8Calculator } from './homeworks/hmw8/calculator-ui.js';
 import { initHmw8Accuracy } from './homeworks/hmw8/accuracy-ui.js';
 import { initHmw8Efficiency } from './homeworks/hmw8/efficiency-ui.js';
+import { initHmw9Analysis } from './homeworks/hmw9/analysis-ui.js';
+import { initHmw9Lab } from './homeworks/hmw9/lab-ui.js';
+import { initHmw9Simpson } from './homeworks/hmw9/simpson-ui.js';
 
 // Per aggiungere un nuovo homework, crea il suo modulo e registralo qui.
 // Aggiungi anche il link alla sidebar (index.html) e una card alla dashboard (home.js).
@@ -88,6 +92,13 @@ const routes = {
     label: 'Homework 5.2',
     title: 'Homework 5.2 — Numerical Computation of the Normal CDF',
     render: renderHmw8
+  },
+
+  // Homework 6 has a single exercise (internal name hmw9).
+  '/hmw9': {
+    label: 'Homework 6',
+    title: 'Homework 6 — Statistical Independence',
+    render: renderHmw9
   }
 };
 
@@ -218,6 +229,19 @@ function navigate() {
       cleanupCalculator();
       cleanupAccuracy();
       cleanupEfficiency();
+    };
+
+  } else if (path === '/hmw9') {
+
+    // Homework 6 — data, χ² and p-value (03–05), lab (06), Berkeley (07).
+    const cleanupAnalysis = initHmw9Analysis();
+    const cleanupLab = initHmw9Lab();
+    const cleanupSimpson = initHmw9Simpson();
+
+    disposeHomework = () => {
+      cleanupAnalysis();
+      cleanupLab();
+      cleanupSimpson();
     };
 
   } else {
