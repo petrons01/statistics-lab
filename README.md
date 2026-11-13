@@ -24,6 +24,7 @@ and security analysis.
 | Homework 4.2 | Sampling Mean and Variance | Completed |
 | Homework 5.1 | Riemann and Lebesgue Integration | Completed |
 | Homework 5.2 | Numerical Computation of the Normal CDF | Completed |
+| Homework 6 | Statistical Independence | Completed |
 
 ### Homework 1.1 — Elliptic Curve Cryptography
 
@@ -447,6 +448,31 @@ grid of values computed with mpmath at 50 digits. Our method agrees
 with all 16 Wikipedia values and keeps a relative error below
 10⁻¹⁴ from z = 0 to z = −37.
 
+### Homework 6 — Statistical Independence
+
+**Route:** `#/hmw9`
+
+Contingency tables built programmatically from raw records, for any
+pair of categorical columns of a bivariate dataset (X, F):
+
+- Joint, marginal and conditional frequencies (row and column
+  profiles), with a chart comparing each row profile with the
+  marginal distribution.
+- Expected counts under independence `E_ij = n_i· n_·j / n`,
+  Pearson's χ², degrees of freedom, critical value, Cramér's V,
+  adjusted residuals, Cochran's rule and Yates' correction.
+- p-values from the χ² distribution (regularized incomplete gamma
+  function, computed in logarithms so that values below 10⁻³⁰⁸ are
+  still printed) and from a permutation test with 1,000 shuffles.
+- A simulator with a chosen amount of dependence: type I error,
+  power, and the distribution of χ² under independence.
+- Association and causation: the 1973 Berkeley admissions, where the
+  pooled dependence between gender and admission disappears inside
+  the departments (Simpson's paradox, Cochran–Mantel–Haenszel test).
+
+Visitors can also load their own CSV file; it is read in the
+browser and never uploaded.
+
 ---
 
 ## Statistical Datasets
@@ -477,6 +503,25 @@ population-wide estimates of attack accuracy.
 For more rigorous studies, larger authentic corpora
 from different genres should be used.
 
+Homework 6 uses two real datasets, stored as one record per line in
+`data/independence/`:
+
+| Dataset | File | Records | Columns |
+|---|---|---|---|
+| NSL-KDD test set (KDDTest+) | `nsl-kdd-test.csv` | 22,544 connections | `protocol`, `flag`, `class` (normal / attack) |
+| UC Berkeley graduate admissions, 1973 | `ucb-admissions-1973.csv` | 4,526 applications | `gender`, `department`, `admission` |
+
+- NSL-KDD: M. Tavallaee, E. Bagheri, W. Lu, A. A. Ghorbani, "A
+  Detailed Analysis of the KDD CUP 99 Data Set", IEEE CISDA 2009;
+  dataset of the Canadian Institute for Cybersecurity, University of
+  New Brunswick, whose licence allows redistribution with this
+  citation. Only three of the 43 columns are kept, and the attack
+  names are collapsed into `attack`.
+- Berkeley: P. J. Bickel, E. A. Hammel, J. W. O'Connell, "Sex Bias in
+  Graduate Admissions: Data from Berkeley", *Science* 187 (1975),
+  398–404. The published counts (R dataset `UCBAdmissions`) are
+  expanded into one record per applicant.
+
 ---
 
 ## Project Structure
@@ -495,9 +540,13 @@ statistics-lab/
 |   `-- favicon.svg
 |
 |-- data/
-|   `-- corpus/
-|       |-- english-reference.txt
-|       `-- english-evaluation.txt
+|   |-- corpus/
+|   |   |-- english-reference.txt
+|   |   `-- english-evaluation.txt
+|   |
+|   `-- independence/
+|       |-- nsl-kdd-test.csv
+|       `-- ucb-admissions-1973.csv
 |
 `-- js/
     |-- app.js
@@ -511,7 +560,8 @@ statistics-lab/
     |   |-- hmw5.js
     |   |-- hmw6.js
     |   |-- hmw7.js
-    |   `-- hmw8.js
+    |   |-- hmw8.js
+    |   `-- hmw9.js
     |
     `-- homeworks/
         |
@@ -579,12 +629,26 @@ statistics-lab/
         |   |-- pathological-ui.js
         |   `-- conclusion.js
         |
-        `-- hmw8/
-            |-- normal-cdf.js
-            |-- reference.js
-            |-- calculator-ui.js
-            |-- accuracy-ui.js
-            |-- efficiency-ui.js
+        |-- hmw8/
+        |   |-- normal-cdf.js
+        |   |-- reference.js
+        |   |-- calculator-ui.js
+        |   |-- accuracy-ui.js
+        |   |-- efficiency-ui.js
+        |   `-- conclusion.js
+        |
+        `-- hmw9/
+            |-- dataset.js
+            |-- contingency.js
+            |-- chi-square.js
+            |-- permutation.js
+            |-- simulation.js
+            |-- simpson.js
+            |-- bar-chart.js
+            |-- format.js
+            |-- analysis-ui.js
+            |-- lab-ui.js
+            |-- simpson-ui.js
             `-- conclusion.js
 ```
 
@@ -592,11 +656,13 @@ statistics-lab/
 interactive modules were created, not the course numbering:
 `hmw3` is displayed as Homework 2, `hmw4` as Homework 3, and
 `hmw5` and `hmw6` as Homework 4.1 and 4.2, `hmw7` and `hmw8` as
-Homework 5.1 and 5.2. Homework 4.1 and 4.2 reuse the random
+Homework 5.1 and 5.2, `hmw9` as Homework 6. Homework 4.1 and 4.2 reuse the random
 generator and the SVG charts of `hmw4`, and Homework 4.2 uses the
 Welford module of `hmw5`. Homework 5.1 and 5.2 reuse the SVG charts
 of `hmw4`; Homework 5.2 uses the trapezoidal and Simpson rules of
-`hmw7`.
+`hmw7`. Homework 6 reuses the random generator and the SVG charts of
+`hmw4`.
+
 ---
 
 ## Architecture
@@ -613,9 +679,11 @@ using vanilla JavaScript and ES Modules.
 - `js/homeworks/hmw6/` contains the score distributions and the sampling experiment.
 - `js/homeworks/hmw7/` contains the Riemann and Lebesgue integration methods and the pathological functions.
 - `js/homeworks/hmw8/` contains the methods for the normal CDF and their reference values.
+- `js/homeworks/hmw9/` contains the contingency tables, the χ² test, the permutation test and the independence simulator.
 - `js/app.js` manages hash-based navigation and initialization.
 - `css/styles.css` provides shared styling and responsive layouts.
 - `data/corpus/` stores the statistical reference and evaluation texts.
+- `data/independence/` stores the two datasets of Homework 6.
 
 Cryptographic operations, statistical calculations,
 and user-interface rendering are implemented

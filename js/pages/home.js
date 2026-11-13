@@ -27,7 +27,7 @@ export function renderHome() {
           <h2 id="hw-title">Homework collection</h2>
         </div>
 
-        <span class="section-counter">05 UNITS · 08 EXERCISES</span>
+        <span class="section-counter">06 UNITS · 09 EXERCISES</span>
       </div>
 
       <!-- HOMEWORK 1 -->
@@ -453,6 +453,63 @@ export function renderHome() {
 
             <div class="card-bottom">
               <span class="tag">LIOUVILLE · ERF · ACCURACY</span>
+
+              <span class="homework-status homework-status--done">
+                <span aria-hidden="true">✓</span>
+                Done
+              </span>
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+      <section class="homework-unit" aria-labelledby="homework-6-title">
+
+        <div class="section-heading">
+
+          <h3 id="homework-6-title">
+            Homework 6
+          </h3>
+
+          <span class="section-counter">
+            1/1 COMPLETED
+          </span>
+
+        </div>
+
+
+        <div class="homework-grid">
+
+          <!-- Homework 6: Statistical independence (internal route /hmw9) -->
+          <a class="homework-card" href="#/hmw9">
+
+            <div class="card-top">
+              <span class="card-code">HMW / 06</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="card-illustration wallet-illustration"
+                aria-hidden="true">
+              <span>X × F</span>
+              <i>→</i>
+              <span>E</span>
+              <i>→</i>
+              <span>χ²</span>
+            </div>
+
+            <h3>Statistical<br />Independence</h3>
+
+            <p>
+              Build contingency tables from network traffic and
+              admissions data, test independence with χ², and see
+              why an association is not a cause.
+            </p>
+
+            <div class="card-bottom">
+              <span class="tag">CONTINGENCY · χ² · CAUSALITY</span>
 
               <span class="homework-status homework-status--done">
                 <span aria-hidden="true">✓</span>
